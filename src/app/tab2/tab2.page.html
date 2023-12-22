@@ -1,17 +1,35 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
+    <ion-title> Tab 2 </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- Slider main container -->
+  <div class="swiper" #swiperElement>
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      <div class="swiper-slide">Slide 1</div>
+      <div class="swiper-slide">Slide 2</div>
+      <div class="swiper-slide">Slide 3</div>
+      <div class="swiper-slide">Slide 1</div>
+      <div class="swiper-slide">Slide 2</div>
+      <div class="swiper-slide">Slide 3</div>
+      ...
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div> <!-- (click)="slidePrev()" -->
+    <div class="swiper-button-next"></div> <!-- (click)="slideNext()" -->
+
+    <!-- If we need scrollbar -->
+    <div class="swiper-scrollbar"></div>
+  </div>
+
+  <ion-button (click)="onUpdate()" expand="block" fill="clear" shape="round">
+    Update
+  </ion-button>
 </ion-content>
