@@ -1,24 +1,79 @@
-<div class="story">
+<ion-content [fullscreen]="true">
+  <!-- Slider main container -->
+  <div class="swiper" #swiperElement>
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      <div class="swiper-slide" *ngFor="let item of story_adds; let ii = index">
+        <ng-container [ngSwitch]="item.type">
+          <section *ngSwitchCase="'image'" class="image-section">
+            <header class="firsth">
+              <div class="actions">
+                <ion-icon name="apps"></ion-icon>
+                <ion-icon name="close-circle-outline"></ion-icon>
+              </div>
 
-  <div class="story__slider swiper">
-    <div class="story__wrapper swiper-wrapper">
-      <div class="story__slide swiper-slide">
-        <img src="https://picsum.photos/450/800" />
-      </div>
-      <div class="story__slide swiper-slide">
-        <video autoplay muted>
-          <!-- May not work in the future, just change source -->
-          <source src="https://exit109.com/~dnn/clips/RW20seconds_1.mp4#t=.1" type="video/mp4">
-        </video>
-      </div>
-      <div class="story__slide swiper-slide">
-        <img src="https://picsum.photos/450/810" />
+              <!-- progress array per current index presentation-->
+              <!-- *ngFor="let progress of item.progress; let i = index" -->
+              <div class="progress-indicator">
+                <ion-progress-bar
+                  *ngFor="let item of story_adds; let i = index"
+                  [value]="progress"
+                  [class.active]="i === index_slide"
+                ></ion-progress-bar>
+              </div>
+            </header>
+            <img [src]="item.url" alt="" />
+
+            <section class="information">
+              <div class="actions">
+                <ion-icon name="heart-outline"></ion-icon>
+                <ion-icon name="download-outline"></ion-icon>
+              </div>
+
+              <header class="second">
+                <figure class="logo">
+                  <span></span>
+                  <!-- src="/assets/icon/apprecioRed.png"  -->
+                  <img [src]="item.company.logo" alt="" />
+                </figure>
+                <article>
+                  <h2>Super Pollo</h2>
+                  <h5>
+                    Apprecio Play
+                    <ion-icon name="send"></ion-icon>
+                  </h5>
+                </article>
+
+                <button>Ir al programa</button>
+              </header>
+              <article class="description">
+                <p
+                  [ngClass]="{'more100': item.desctiption | lengthTextRegulation, 'active': flag_showMore}"
+                >
+                  {{item.desctiption}}
+                </p>
+                <a
+                  *ngIf="item.desctiption | lengthTextRegulation"
+                  class="showMore"
+                  (click)="flag_showMore = !flag_showMore"
+                >
+                  <span *ngIf="flag_showMore ; else tempElse">Ver más</span>
+                  <ng-template #tempElse>Ver menos</ng-template>
+                </a>
+                <a href=""></a>
+              </article>
+            </section>
+          </section>
+          <section *ngSwitchDefault><h1>Other</h1></section>
+        </ng-container>
       </div>
     </div>
-
-    <div class="story__next swiper-button-next"></div>
-    <div class="story__prev swiper-button-prev"></div>
-
-    <div class="story__pagination swiper-pagination"></div>
   </div>
-</div>
+  <ion-button (click)="onInitt()" expand="block" fill="clear" shape="round">
+    On Initt
+  </ion-button>
+  <ion-button (click)="onTest()" expand="block" fill="clear" shape="round">
+    onTest
+  </ion-button>
+</ion-content>

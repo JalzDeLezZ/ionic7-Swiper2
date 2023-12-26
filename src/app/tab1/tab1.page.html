@@ -7,8 +7,18 @@
 <ion-content [fullscreen]="true">
   <!-- <swiper-container slides-per-view="2" speed="500" loop="true" css-mode="true"> -->
   <!-- <swiper-container init="false" #swiper [config]="swiperParams"> -->
-  <swiper-container init="false" #swiper >
-    <swiper-slide>Slide 1</swiper-slide>
+    <swiper-container init="false" #swiper css-mode="true"
+
+    >
+    <!--
+      virtual="true"
+      slides-per-view="3" speed="500" loop="true"
+      [config]="params"
+     -->
+    <!-- [pagination]="{ clickable: true } -->
+    <!-- [navigation]="{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }" -->
+
+    <swiper-slide>One</swiper-slide>
     <swiper-slide>Slide 2</swiper-slide>
     <swiper-slide>Slide 3</swiper-slide>
     <swiper-slide>Slide 4</swiper-slide>
@@ -16,8 +26,8 @@
     <swiper-slide>Slide 6</swiper-slide>
     <swiper-slide>Slide 7</swiper-slide>
 
-    <swiper-pagination></swiper-pagination>
-    <swiper-navigation prevEl=".swiper-button-prev" nextEl=".swiper-button-next"></swiper-navigation>
+<!--     <swiper-pagination></swiper-pagination>
+    <swiper-navigation prevEl=".swiper-button-prev" nextEl=".swiper-button-next"></swiper-navigation> -->
   </swiper-container>
 
   <ion-button (click)="onTest()" expand="block" fill="clear" shape="round">

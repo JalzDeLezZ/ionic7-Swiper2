@@ -1,68 +1,165 @@
-.story {
+.swiper,
+.swiper-wrapper,
+.swiper-slide {
+  width: 100%;
+  height: 100%;
+}
 
-  &__slider {
-    width: 450px;
-    height: 800px;
-    border-radius: 6px;
-    overflow: hidden;
-  }
+.swiper-slide {
+  background-color: rgb(51, 82, 85);
+  display: grid;
+  place-items: center;
+}
 
-  &__wrapper {
+.image-section {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    0deg,
+    rgba(2, 0, 36, 0.8954175420168067) 0%,
+    rgba(0, 0, 0, 0.6993391106442577) 35%,
+    rgba(255, 255, 255, 0) 100%
+  );
 
-  }
-
-  &__slide {
-    position: relative;
-
-    video,
-    img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-      object-position: center;
+  header.firsth {
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    padding: 20px;
+    gap: 21px;
+    display: grid;
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-  }
-
-  &__pagination {
-    bottom: unset !important;
-    top: 8px !important;
-    display: flex;
-    padding: 0 4px;
-
-    .swiper-pagination-bullet {
-      flex-grow: 1;
-      border-radius: 100vh;
-      height: 3px;
-      margin: 0 2px !important;
-      background-color: rgba($color: #f7f7f5, $alpha: .4);
-      opacity: 1;
-
-      .swiper-pagination-progress {
-        height: 100%;
-        width: 0%;
-        border-radius: 100vh;
-        background-color: #f7f7f5;
+    .progress-indicator {
+      display: flex;
+      gap: 3%;
+      ion-progress-bar {
+        z-index: 1;
+        --background: #fafafa4d;
+        --progress-background: #fbfbfb;
       }
     }
   }
+  img {
+    min-height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+  }
+  button {
+    border-radius: 8px;
+    background: #fa345d;
+    height: 31px;
+    margin-left: auto;
+    padding: 8px 12px;
+  }
 
-  &__prev,
-  &__next {
-    height: 100%;
-    width: 50%;
-    top: 0;
-    margin-top: 0;
+  .information {
+    width: 100%;
+    display: grid;
+    position: absolute;
+    bottom: 0px;
+    padding: 20px;
+    background: linear-gradient(
+      0deg,
+      rgba(2, 0, 36, 0.8954175420168067) 0%,
+      rgba(0, 0, 0, 0.6993391106442577) 35%,
+      rgba(255, 255, 255, 0) 100%
+    );
 
-    &::after {
-      content: none;
+    .actions {
+      display: grid;
+      gap: 9px;
+      margin: 0 0 21px auto;
+    }
+
+    article.description {
+      text-align: justify;
+      p.more100 {
+        &.active {
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 3;
+          line-height: 1.2em;
+        }
+      }
+      a.showMore {
+        @media (min-width: 450px) {
+          display: none;
+        }
+        color: #fa345d;
+        font-weight: 600;
+        font-size: 14px;
+        text-decoration: none;
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+      }
+    }
+    header.second {
+      display: flex;
+      align-items: center;
+      article {
+        margin-left: 9px;
+        h5 {
+          display: flex;
+          align-items: center;
+          justify-content: left;
+          gap: 9px;
+        }
+        h2,
+        h5 {
+          margin: 0px;
+        }
+        ion-icon {
+          font-size: 15px;
+          border-radius: 50%;
+          padding: 6px;
+        }
+      }
+      figure.logo {
+        margin: 0;
+        position: relative;
+        span {
+          position: absolute;
+          top: -12px;
+          right: -4px;
+          width: 30px;
+          height: 30px;
+          // ~assets/icon/apprecioRed.png
+          background-image: url(../../assets/icon/apprecioRed.png);
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+        }
+        img {
+          width: 57px;
+          height: 57px;
+          border-radius: 50%;
+          margin-right: 10px;
+        }
+      }
     }
   }
+}
 
-  &__prev {
-    left: 0;
-  }
+ion-icon {
+  font-size: 30px;
+  background: #0000003b;
+  border-radius: 9px;
+  padding: 6px;
+}
 
-  &__next {
-    right: 0;
-  }
+.swiper-horizontal > .swiper-scrollbar,
+.swiper-scrollbar.swiper-scrollbar-horizontal {
+  top: 9vh;
+  display: flex;
 }

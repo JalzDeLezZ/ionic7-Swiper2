@@ -1,69 +1,95 @@
-// VANILLA JS
-//set video duration
-/* import Swiper from 'swiper';
-
-const videos = document.querySelectorAll('.story__slide video');
-videos.forEach(video => {
-	$(video).parent('.story__slide').attr('data-swiper-autoplay', video.duration * 1000);
-});
-
-const slider = new Swiper(".story__slider", {
-	speed: 1,
-	watchSlidesProgress: true,
-	loop: true,
-	autoplay: {
-		delay: 15000,
-		disableOnInteraction: false
-	},
-	slidesPerView: 1,
-	navigation: {
-		nextEl: ".story__next",
-		prevEl: ".story__prev",
-	},
-	pagination: {
-		el: '.story__pagination',
-		renderBullet: function (index, className) {
-			return '<div class="' + className + '"> <div class="swiper-pagination-progress"></div> </div>';
-		}
-	},
-	on: {
-		autoplayTimeLeft(swiper, time, progress) {
-			let currentSlide = document.querySelectorAll('.story__slider .swiper-slide')[swiper.activeIndex]
-			let currentBullet = document.querySelectorAll('.story__slider .swiper-pagination-progress')[swiper.realIndex]
-			let fullTime = currentSlide?["dataset"]?["swiperAutoplay"] ? parseInt(currentSlide?['dataset']?['swiperAutoplay']) : swiper.params.autoplay.delay;
-
-			let percentage = Math.min( Math.max ( parseFloat(((fullTime - time) * 100 / fullTime).toFixed(1)), 0), 100) + '%';
-
-		  gsap.set(currentBullet, {width: percentage});
-		},
-		transitionEnd(swiper) {
-			let allBullets = $('.story__slider .swiper-pagination-progress');
-			let bulletsBefore = allBullets.slice(0, swiper.realIndex);
-			let bulletsAfter = allBullets.slice(swiper.realIndex, allBullets.length);
-		  if(bulletsBefore.length) {gsap.set(bulletsBefore, {width: '100%'})}
-			 if(bulletsAfter.length) {gsap.set(bulletsAfter, {width: '0%'})}
-
-			let activeSlide = document.querySelectorAll('.story__slider .swiper-slide')[swiper.realIndex];
-			if (activeSlide.querySelector('video')) {
-				 activeSlide.querySelector('video').currentTime = 0;
-			}
-		},
-	}
-});
-
- */
-// angular
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnChanges, ViewChild } from '@angular/core';
+import { story_adds_api_responce } from 'src/assets/data/api1';
+import Swiper from 'swiper';
+import { SwiperOptions } from 'swiper/types';
 
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss']
+  styleUrls: ['tab3.page.scss'],
 })
-export class Tab3Page {
+export class Tab3Page implements AfterViewInit , OnChanges {
+  public progress = 0;
+  public index_slide = 0;
+  story_adds = story_adds_api_responce;
+  flag_showMore = true;
 
-  constructor() {}
+  //! https://swiperjs.com/swiper-api
 
-  
+  @ViewChild('swiperElement', { static: false }) swiperElement!: ElementRef;
 
+  swiper!: Swiper;
+
+  swiperParams: SwiperOptions = {
+    speed: 400,
+  };
+
+  constructor() {
+    /* setInterval(() => {
+      this.progress += 0.01;
+
+      // Reset the progress bar when it reaches 100%
+      // to continuously show the demo
+      if (this.progress > 1) {
+        setTimeout(() => {
+          // this.progress = 0;
+          this.swiper.slideNext();
+        }, 1000);
+      }
+    }, 50); */
+  }
+
+  // detect when index_slide changes
+  ngOnChanges() {
+    console.log('ngOnChanges');
+
+  }
+
+  ngAfterViewInit() {
+    this.swiper = new Swiper(
+      this.swiperElement.nativeElement,
+      {
+        ...this.swiperParams,
+        on: {
+          init: () => {
+            console.log('swiper initialized');
+            setInterval(() => {
+              this.swiper.slideNext(); // Avanza al siguiente slide
+            }, 3000); // Intervalo de tiempo en milisegundos (en este caso, 3 segundos)
+          },
+          slideChange: () => {
+            console.log('slide changed');
+            this.index_slide = this.swiper.activeIndex; // Actualiza el índice del slide actual
+          },
+          reachEnd: () => {
+            console.log('Se ha alcanzado el último slide');
+            // Aquí puedes hacer lo que necesites cuando se haya alcanzado el último slide
+          },
+        },
+      }
+    );
+  }
+
+  onInitt() {
+    this.swiper = new Swiper(
+      this.swiperElement.nativeElement,
+      {
+        ...this.swiperParams,
+        on: {
+          init: () => {
+            console.log('swiper initialized');
+          },
+          slideChange: () => {
+            console.log('slide changed');
+            this.index_slide = this.swiper.activeIndex; // Actualiza el índice del slide actual
+          },
+        },
+      }
+    );
+  }
+
+  onTest() {
+    const current_timer = this.swiper.params.autoplay;
+    console.log(current_timer);
+  }
 }

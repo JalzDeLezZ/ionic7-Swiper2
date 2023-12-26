@@ -8,6 +8,9 @@ import { SwiperOptions } from 'swiper/types';
   styleUrls: ['tab2.page.scss'],
 })
 export class Tab2Page implements AfterViewInit {
+
+  //! https://swiperjs.com/swiper-api
+
   @ViewChild('swiperElement', { static: false }) swiperElement!: ElementRef;
 
   swiper!: Swiper;

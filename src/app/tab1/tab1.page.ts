@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
 // import Swiper from 'swiper';
 // import function to register Swiper custom elements
 import { register } from 'swiper/element/bundle';
@@ -12,6 +12,7 @@ register();
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
+  // encapsulation: ViewEncapsulation.None //! ❌
 })
 export class Tab1Page implements AfterViewInit {
   swiperParams: SwiperOptions = {
