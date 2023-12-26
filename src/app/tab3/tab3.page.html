@@ -7,6 +7,15 @@
       <div class="swiper-slide" *ngFor="let item of story_adds; let ii = index">
         <ng-container [ngSwitch]="item.type">
           <section *ngSwitchCase="'image'" class="image-section">
+            <div class="play_pause" (click)="onPlayPause()">
+              <ion-icon name="play"
+                *ngIf="pause"
+              ></ion-icon>
+              <ion-icon name="pause"
+                *ngIf="!pause"
+              ></ion-icon>
+            </div>
+
             <header class="firsth">
               <div class="actions">
                 <ion-icon name="apps"></ion-icon>
