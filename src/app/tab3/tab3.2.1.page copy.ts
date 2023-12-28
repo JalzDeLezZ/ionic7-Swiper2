@@ -23,21 +23,21 @@ import Swiper from 'swiper';
 import { SwiperOptions } from 'swiper/types';
 import { EMPTY } from 'rxjs';
 
-@Component({
+/* @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss'],
-})
+}) */
 export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
   public progress = 1; // progress bar value 0 to 1, decimal value
   public slideIndex = 0;
 
-  isPaused$ = new BehaviorSubject<boolean>(false); // Initially paused
-  // public isPaused = true;
-  // private pauseResumeState = new BehaviorSubject<boolean>(true); // Initially paused
-  // private pauseResume$ = new Subject<boolean>();
+  public isPaused = true;
   private onDestroy$ = new Subject<void>();
+  private pauseResume$ = new Subject<boolean>();
+  private pauseResumeState = new BehaviorSubject<boolean>(true); // Initially paused
   private autoPlaySubscription?: Subscription;
+  isPaused$ = new BehaviorSubject<boolean>(true); // Initially paused
 
   story_adds = story_adds_api_responce;
   flag_showMore = true;
@@ -69,7 +69,7 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
       ...this.swiperParams,
       on: {
         init: () => {
-          this.startSlideAutoPlayTimer();
+          this.startAutoPlay();
         },
         slideChange: () => {
           this.slideIndex = this.swiper.activeIndex; // Actualiza el índice del slide actual
@@ -86,9 +86,11 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
     console.log('onTest');
   }
 
+
   togglePauseResume() {
     this.isPaused$.next(!this.isPaused$.value);
   }
+
   onNext() {
     this.swiper.slideNext();
   }
@@ -96,20 +98,32 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
     this.swiper.slidePrev();
   }
 
-  startSlideAutoPlayTimer() {
-    this.autoPlaySubscription = this.isPaused$
+  startAutoPlay() {
+    /* this.autoPlaySubscription = this.pauseResumeState
       .pipe(
         switchMap((isPaused) => {
-          return isPaused ? EMPTY : interval(3000);
-        }), // Emit every 3 seconds if not paused
-        filter(() => !this.isPaused$.value), // Ensure still not paused
-        takeWhile(
-          () => this.swiper.activeIndex !== this.swiper.slides.length - 1
-        ) // Continue until last slide
+          return isPaused
+            ? EMPTY
+            : interval(100).pipe(
+                takeWhile(() => this.progress < 1),
+                takeUntil(this.pauseResumeState.pipe(filter((paused) => paused)))
+              );
+        })
       )
       .subscribe(() => {
-        this.swiper.slideNext(); // Advance to the next slide
+        this.progress += 0.01;
+      }); */
+      this.autoPlaySubscription = this.isPaused$.pipe(
+        switchMap((isPaused) => (isPaused ? EMPTY : interval(3000))),
+        filter(() => !this.isPaused$.value), // Ensure not paused
+        takeWhile(() => /* condition for continuing autoplay */
+          this.slideIndex < this.story_adds.length - 1
+        )
+      ).subscribe(() => {
+        // Advance slides here
+        this.swiper.slideNext();
       });
+
   }
 
   stopAutoPlay() {
