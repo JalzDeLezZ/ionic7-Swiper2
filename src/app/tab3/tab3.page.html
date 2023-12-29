@@ -8,9 +8,9 @@
         <ng-container [ngSwitch]="item.type">
           <section *ngSwitchCase="'image'" class="image-section">
             <div class="play_pause" (click)="togglePauseResume()">
-              <ion-icon name="play" *ngIf="isPaused$.value"></ion-icon>
-              <ion-icon name="pause" *ngIf="!isPaused$.value"></ion-icon>
-              <!-- <ion-icon *ngIf="isEnded$.value" name="refresh"></ion-icon> -->
+              <ion-icon name="play" *ngIf="isPaused$.value && !restart"></ion-icon>
+              <ion-icon name="pause" *ngIf="!isPaused$.value && !restart"></ion-icon>
+              <ion-icon (click)="onRestart()" *ngIf="restart" name="refresh"></ion-icon>
             </div>
 
             <div class="next_prev">

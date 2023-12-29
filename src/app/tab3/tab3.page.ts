@@ -32,10 +32,8 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
   public progress = 1; // progress bar value 0 to 1, decimal value
   public slideIndex = 0;
 
+  public restart = false;
   isPaused$ = new BehaviorSubject<boolean>(false); // Initially paused
-  // public isPaused = true;
-  // private pauseResumeState = new BehaviorSubject<boolean>(true); // Initially paused
-  // private pauseResume$ = new Subject<boolean>();
   private onDestroy$ = new Subject<void>();
   private autoPlaySubscription?: Subscription;
 
@@ -75,8 +73,8 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
           this.slideIndex = this.swiper.activeIndex; // Actualiza el índice del slide actual
         },
         reachEnd: () => {
-          console.log('reachEnd');
-          this.stopAutoPlay();
+          // this.stopAutoPlay();
+          this.restart = true; // Indicate restart option
         },
       },
     });
@@ -100,24 +98,35 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
     this.autoPlaySubscription = this.isPaused$
       .pipe(
         switchMap((isPaused) => {
+          console.log("🚀 ~ file: tab3.page.ts:101 ~ Tab3Page ~ switchMap ~ isPaused:", isPaused)
           return isPaused ? EMPTY : interval(3000);
         }), // Emit every 3 seconds if not paused
         filter(() => !this.isPaused$.value), // Ensure still not paused
-        takeWhile(
-          () => this.swiper.activeIndex !== this.swiper.slides.length - 1
-        ) // Continue until last slide
+        takeWhile(() => {
+          return this.swiper.activeIndex !== this.swiper.slides.length - 1; // Allow restart
+        }) // Continue until last slide
       )
       .subscribe(() => {
         this.swiper.slideNext(); // Advance to the next slide
       });
   }
 
+
+  ngOnDestroy() {
+    this.autoPlaySubscription?.unsubscribe(); // Cleanup
+  }
+
+  onRestart() {
+    this.autoPlaySubscription?.unsubscribe();
+    this.swiper.slideTo(0);
+    this.startSlideAutoPlayTimer();
+    this.restart = false;
+    this.togglePauseResume();
+  }
+
+  //! review this function
   stopAutoPlay() {
     this.onDestroy$.next();
     this.onDestroy$.complete();
-  }
-
-  ngOnDestroy() {
-    this.stopAutoPlay();
   }
 }
