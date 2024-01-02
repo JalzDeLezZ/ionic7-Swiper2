@@ -27,11 +27,6 @@ import Swiper from 'swiper';
 import { SwiperOptions } from 'swiper/types';
 import { EMPTY } from 'rxjs';
 
-@Component({
-  selector: 'app-tab3',
-  templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss'],
-})
 export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
   public progress = 0;
   public slideIndex = 0;
@@ -87,13 +82,13 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
         },
       },
     });
+
     this.slideChange$ = fromEvent(this.swiper.el, 'slideChange');
 
     merge(this.slideChange$, this.progressReset$)
     .subscribe(() => {
       this.progress = 0;
     });
-
 
   }
 
@@ -111,15 +106,9 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
   onPrev() {
     this.progress = 0; // Reset progress on slide change
     this.swiper.slidePrev();
-    this.startSlideAutoPlayTimer(); // Restart autoplay if not paused
-
   }
 
   startSlideAutoPlayTimer() {
-    if (this.isPaused$.value) {
-      return; // Don't start if paused
-    }
-
     this.autoPlaySubscription = interval(3000)
       .pipe(
         takeUntil(this.onDestroy$),
@@ -129,7 +118,7 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
       .subscribe(() => {
         this.swiper.slideNext();
       });
-    this.slideChangeSubscription = interval(30)
+    this.slideChangeSubscription = interval(40)
       .pipe(
         takeUntil(this.onDestroy$),
         filter(() => !this.isPaused$.value),
@@ -147,6 +136,7 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
   ngOnDestroy() {
     this.onDestroy$.next();
     this.onDestroy$.complete();
+    this.autoPlaySubscription?.unsubscribe(); // Cleanup
   }
 
   onRestart() {
@@ -165,5 +155,4 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
     this.autoPlaySubscription?.unsubscribe();
     this.slideChangeSubscription.unsubscribe();
   }
-
 }

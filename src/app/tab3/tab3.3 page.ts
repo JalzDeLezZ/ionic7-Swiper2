@@ -12,14 +12,11 @@ import {
   Subscription,
   filter,
   interval,
-  merge,
-  fromEvent,
   skipUntil,
   skipWhile,
   switchMap,
   takeUntil,
   takeWhile,
-  tap,
   timer,
 } from 'rxjs';
 import { story_adds_api_responce } from 'src/assets/data/api1';
@@ -37,20 +34,12 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
   public slideIndex = 0;
 
   public restart = false;
-  isPaused$ = new BehaviorSubject<boolean>(false);
+  isPaused$ = new BehaviorSubject<boolean>(false); // Initially paused
   private onDestroy$ = new Subject<void>();
   private autoPlaySubscription?: Subscription;
-  timerSubscription?: Subscription;
-  private slideChangeSubscription: any;
+  timerSubscription?: Subscription; // Declare timerSubscription
   //! https://swiperjs.com/swiper-api
-  private progressReset$ = new Subject<void>();
-  private progressInterval$ = interval(50);
-
-  // myObservable = interval(1000); // Emits values every second
-  // subscription = this.myObservable.subscribe((value) => {
-  //   console.log('Received value:', value);
-  // });
-  slideChange$: any;
+  private slideChangeSubscription: any;
 
   story_adds = story_adds_api_responce;
   flag_showMore = true;
@@ -59,8 +48,10 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
   swiper!: Swiper;
   swiperParams: SwiperOptions = { speed: 400 };
 
+
   constructor() {}
 
+  // detect when index_slide changes
   ngOnChanges() {
     console.log('ngOnChanges');
   }
@@ -77,24 +68,21 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
           this.startSlideAutoPlayTimer();
         },
         slideChange: () => {
-          this.progress = 0;
-          this.slideIndex = this.swiper.activeIndex;
+          // this.progress = 0;
+          // setInterval(() => {
+          //   this.progress += 0.01;
+          //   if (this.progress > 1) {
+          //     setTimeout(() => {}, 3000);
+          //   }
+          // }, 50);
+          this.slideIndex = this.swiper.activeIndex; // Actualiza el índice del slide actual
         },
         reachEnd: () => {
-          this.progress = 0; // Reset progress on reachEnd
           this.stopAutoPlay();
-          this.restart = true;
+          this.restart = true; // Indicate restart option
         },
       },
     });
-    this.slideChange$ = fromEvent(this.swiper.el, 'slideChange');
-
-    merge(this.slideChange$, this.progressReset$)
-    .subscribe(() => {
-      this.progress = 0;
-    });
-
-
   }
 
   onTest() {
@@ -105,48 +93,43 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
     this.isPaused$.next(!this.isPaused$.value);
   }
   onNext() {
-    this.progress = 0; // Reset progress on slide change
     this.swiper.slideNext();
   }
   onPrev() {
-    this.progress = 0; // Reset progress on slide change
     this.swiper.slidePrev();
-    this.startSlideAutoPlayTimer(); // Restart autoplay if not paused
-
   }
 
   startSlideAutoPlayTimer() {
-    if (this.isPaused$.value) {
-      return; // Don't start if paused
-    }
 
-    this.autoPlaySubscription = interval(3000)
+    this.progress = 0;
+    setInterval(() => {
+      this.progress += 0.01;
+      if (this.progress > 1) {
+        setTimeout(() => {}, 3000);
+      }
+    }, 50);
+
+    this.autoPlaySubscription = this.isPaused$
       .pipe(
-        takeUntil(this.onDestroy$),
-        filter(() => !this.isPaused$.value),
-        filter(() => this.slideIndex !== this.story_adds.length - 1)
+        switchMap((isPaused) => {
+          if (isPaused) {
+            return EMPTY;
+          } else {
+            return interval(3000);
+          }
+        }), // Emit every 3 seconds if not paused
+        filter(() => !this.isPaused$.value), // Ensure still not paused
+        takeWhile(() => {
+          return this.swiper.activeIndex !== this.swiper.slides.length - 1; // Allow restart
+        }) // Continue until last slide
       )
       .subscribe(() => {
-        this.swiper.slideNext();
+        this.swiper.slideNext(); // Advance to the next slide
       });
-    this.slideChangeSubscription = interval(30)
-      .pipe(
-        takeUntil(this.onDestroy$),
-        filter(() => !this.isPaused$.value),
-        tap(() => {
-          this.progress += 0.01;
-          if (this.progress >= 1) {
-            this.progressReset$.next(); // Trigger progress reset
-          }
-        })
-      )
-      .subscribe();
-
   }
 
   ngOnDestroy() {
-    this.onDestroy$.next();
-    this.onDestroy$.complete();
+    this.autoPlaySubscription?.unsubscribe(); // Cleanup
   }
 
   onRestart() {
@@ -161,9 +144,5 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
   stopAutoPlay() {
     this.onDestroy$.next();
     this.onDestroy$.complete();
-
-    this.autoPlaySubscription?.unsubscribe();
-    this.slideChangeSubscription.unsubscribe();
   }
-
 }
