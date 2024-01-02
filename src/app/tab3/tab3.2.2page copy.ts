@@ -24,11 +24,6 @@ import Swiper from 'swiper';
 import { SwiperOptions } from 'swiper/types';
 import { EMPTY } from 'rxjs';
 
-@Component({
-  selector: 'app-tab3',
-  templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss'],
-})
 export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
   public progress = 0;
   public slideIndex = 0;
@@ -38,8 +33,8 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
   private onDestroy$ = new Subject<void>();
   private autoPlaySubscription?: Subscription;
   timerSubscription?: Subscription; // Declare timerSubscription
-  //! https://swiperjs.com/swiper-api
   private slideChangeSubscription: any;
+  //! https://swiperjs.com/swiper-api
 
   story_adds = story_adds_api_responce;
   flag_showMore = true;
@@ -65,23 +60,23 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
       ...this.swiperParams,
       on: {
         init: () => {
-          this.progress = 0;
-          setInterval(() => {
-            this.progress += 0.01;
-            if (this.progress > 1) {
-              setTimeout(() => {}, 3000);
-            }
-          }, 50);
+          // this.progress = 0;
+          // setInterval(() => {
+          //   this.progress += 0.01;
+          //   if (this.progress > 1) {
+          //     setTimeout(() => {}, 3000);
+          //   }
+          // }, 50);
           this.startSlideAutoPlayTimer();
         },
         slideChange: () => {
-          this.progress = 0;
-          setInterval(() => {
-            this.progress += 0.01;
-            if (this.progress > 1) {
-              setTimeout(() => {}, 3000);
-            }
-          }, 50);
+          // this.progress = 0;
+          // setInterval(() => {
+          //   this.progress += 0.01;
+          //   if (this.progress > 1) {
+          //     setTimeout(() => {}, 3000);
+          //   }
+          // }, 50);
           this.slideIndex = this.swiper.activeIndex; // Actualiza el índice del slide actual
         },
         reachEnd: () => {
@@ -100,14 +95,18 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
     this.isPaused$.next(!this.isPaused$.value);
   }
   onNext() {
+    // this.progress = 0; // Reset progress on slide change
+
     this.swiper.slideNext();
   }
   onPrev() {
+    // this.progress = 0; // Reset progress on slide change
+
     this.swiper.slidePrev();
   }
 
   startSlideAutoPlayTimer() {
-    this.autoPlaySubscription = this.isPaused$
+    /* this.autoPlaySubscription = this.isPaused$
       .pipe(
         switchMap((isPaused) => {
           if (isPaused) {
@@ -123,11 +122,42 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
       )
       .subscribe(() => {
         this.swiper.slideNext(); // Advance to the next slide
+      }); */
+      this.autoPlaySubscription = interval(3000)
+      .pipe(
+        takeUntil(this.onDestroy$),
+        filter(() => !this.isPaused$.value),
+        filter(() => this.slideIndex !== this.story_adds.length - 1)
+      )
+      .subscribe(() => {
+        this.swiper.slideNext();
       });
+
+    this.slideChangeSubscription = interval(50)
+      .pipe(
+        takeUntil(this.onDestroy$),
+        filter(() => !this.isPaused$.value)
+      )
+      .subscribe(() => {
+
+        // this.progress = 0;
+        // setInterval(() => {
+        //   this.progress += 0.01;
+        //   if (this.progress > 1) {
+        //     setTimeout(() => {}, 3000);
+        //   }
+        // }, 50);
+        if (this.progress < 1) {
+          this.progress += 0.01 / (3000 / 50); // Adjust progress to match timeout
+        }
+      });
+
   }
 
   ngOnDestroy() {
-    this.autoPlaySubscription?.unsubscribe(); // Cleanup
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
+    // this.autoPlaySubscription?.unsubscribe(); // Cleanup
   }
 
   onRestart() {
@@ -142,5 +172,8 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
   stopAutoPlay() {
     this.onDestroy$.next();
     this.onDestroy$.complete();
+
+    this.autoPlaySubscription?.unsubscribe();
+    this.slideChangeSubscription.unsubscribe();
   }
 }

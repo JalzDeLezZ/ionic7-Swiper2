@@ -50,6 +50,18 @@
   }
 }
 
+// add .image-section before in the top background gradient
+.image-section:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 9vh;
+  background: rgb(0,0,0);
+  background: linear-gradient(180deg, rgba(0,0,0,0.6965379901960784) 0%, rgba(0,0,0,0.40242034313725494) 35%, rgba(255,255,255,0) 100%);
+}
+
 .image-section {
   width: 100%;
   height: 100%;
