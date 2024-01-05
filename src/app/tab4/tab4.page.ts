@@ -30,7 +30,7 @@ register();
 export class Tab4Page implements OnInit, AfterViewInit {
   story_adds = story_adds_api_responce;
 
-  swiperParams: SwiperOptions = swiperParams2;
+  swiperParams: SwiperOptions = swiperParams;
 
   @ViewChild('swiper', { static: true }) swiperEl!: ElementRef | any;
 
