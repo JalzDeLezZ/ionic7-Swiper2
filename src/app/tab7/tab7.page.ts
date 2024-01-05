@@ -5,11 +5,11 @@ import {
   OutMode,
   // ClickMode,
   // HoverMode,
-} from "@tsparticles/engine";
-import { loadFull } from "tsparticles"; // if you are going to use `loadFull`, install the "tsparticles" package too.
-import { loadSlim } from "@tsparticles/slim"; // if you are going to use `loadSlim`, install the "@tsparticles/slim" package too.
-import { NgParticlesService } from "@tsparticles/angular";
-
+} from '@tsparticles/engine';
+import { loadFull } from 'tsparticles'; // if you are going to use `loadFull`, install the "tsparticles" package too.
+import { loadSlim } from '@tsparticles/slim'; // if you are going to use `loadSlim`, install the "@tsparticles/slim" package too.
+import { NgParticlesService } from '@tsparticles/angular';
+import { confetti } from '@tsparticles/confetti';
 
 @Component({
   selector: 'app-tab7',
@@ -17,16 +17,16 @@ import { NgParticlesService } from "@tsparticles/angular";
   styleUrls: ['./tab7.page.scss'],
 })
 export class Tab7Page implements OnInit {
-  id = "tsparticles";
+  id = 'tsparticles';
 
   /* Starting from 1.19.0 you can use a remote url (AJAX request) to a JSON with the configuration */
-  particlesUrl = "http://foo.bar/particles.json";
+  particlesUrl = 'http://foo.bar/particles.json';
 
   /* or the classic JavaScript object */
-  particlesOptions : any = {
+  particlesOptions: any = {
     background: {
       color: {
-        value: "#0d47a1",
+        value: '#0d47a1',
       },
     },
     fpsLimit: 120,
@@ -54,10 +54,10 @@ export class Tab7Page implements OnInit {
     },
     particles: {
       color: {
-        value: "#ffffff",
+        value: '#ffffff',
       },
       links: {
-        color: "#ffffff",
+        color: '#ffffff',
         distance: 150,
         enable: true,
         opacity: 0.5,
@@ -84,7 +84,7 @@ export class Tab7Page implements OnInit {
         value: 0.5,
       },
       shape: {
-        type: "circle",
+        type: 'circle',
       },
       size: {
         value: { min: 1, max: 5 },
@@ -92,7 +92,6 @@ export class Tab7Page implements OnInit {
     },
     detectRetina: true,
   };
-
 
   constructor(private readonly ngParticlesService: NgParticlesService) {}
 
@@ -112,34 +111,45 @@ export class Tab7Page implements OnInit {
     console.log(container);
   }
 
+  async onConfetti() {
+    const defaults = {
+      spread: 360,
+      ticks: 100,
+      gravity: 0,
+      decay: 0.94,
+      startVelocity: 30,
+      shapes: ['heart'],
+      colors: ['FFC0CB', 'FF69B4', 'FF1493', 'C71585'],
+    };
 
+    await confetti({
+      ...defaults,
+      particleCount: 50,
+      scalar: 2,
+    });
+
+    await confetti({
+      ...defaults,
+      particleCount: 25,
+      scalar: 3,
+    });
+
+    await confetti({
+      ...defaults,
+      particleCount: 10,
+      scalar: 4,
+    });
+    // await confetti({
+    //   particleCount: 100,
+    //   startVelocity: 30,
+    //   spread: 360,
+    //   origin: {
+    //     x: Math.random(),
+    //     // since they fall down, start a bit higher than random
+    //     y: Math.random() - 0.2,
+    //   },
+    // });
+  }
 }
 
 //? CONFETTI EFFECT
-// const defaults = {
-//   spread: 360,
-//   ticks: 100,
-//   gravity: 0,
-//   decay: 0.94,
-//   startVelocity: 30,
-//   shapes: ["heart"],
-//   colors: ["FFC0CB", "FF69B4", "FF1493", "C71585"],
-// };
-
-// confetti({
-//   ...defaults,
-//   particleCount: 50,
-//   scalar: 2,
-// });
-
-// confetti({
-//   ...defaults,
-//   particleCount: 25,
-//   scalar: 3,
-// });
-
-// confetti({
-//   ...defaults,
-//   particleCount: 10,
-//   scalar: 4,
-// });
