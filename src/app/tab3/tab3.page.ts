@@ -26,6 +26,7 @@ import { story_adds_api_responce } from 'src/assets/data/api1';
 import Swiper from 'swiper';
 import { SwiperOptions } from 'swiper/types';
 import { EMPTY } from 'rxjs';
+import { Navigation } from 'swiper/modules';
 
 @Component({
   selector: 'app-tab3',
@@ -74,7 +75,7 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
       ...this.swiperParams,
       on: {
         init: () => {
-          //* this.startSlideAutoPlayTimer(); //UNCOMMENT
+          //! this.startSlideAutoPlayTimer(); //UNCOMMENT
         },
         slideChange: () => {
           this.progress = 0;
@@ -142,7 +143,9 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
   }
 
   ionViewDidLeave() {
-    console.log("🚀 ~ file: tab3.page.ts:145 ~ Tab3Page ~ ionViewDidLeave ~ ionViewDidLeave:")
+    console.log(
+      '🚀 ~ file: tab3.page.ts:145 ~ Tab3Page ~ ionViewDidLeave ~ ionViewDidLeave:'
+    );
     this.onDestroy$.next();
     this.onDestroy$.complete();
     this.autoPlaySubscription?.unsubscribe(); // Added cleanup
@@ -157,10 +160,49 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
     this.togglePauseResume();
   }
 
+  // ? CAROUSEL SECTION
+  // ? CAROUSEL SECTION
+  // ? CAROUSEL SECTION
 
-  // ? CAROUSEL SECTION
-  // ? CAROUSEL SECTION
-  // ? CAROUSEL SECTION
+//   injectStylesC = [
+//     `
+
+// .swiper-pagination-bullet {
+//   width: 20px;
+//   height: 20px;
+//   text-align: center;
+//   line-height: 20px;
+//   font-size: 12px;
+//   color: orange;
+//   opacity: 1;
+//   background: green;
+// }
+// .swiper-pagination-bullet-active {
+//   color: yellow !important;
+//   background: #ff0003 !important;
+// }
+//     `,
+//   ];
+
+  paginationC = {
+    clickable: true,
+    renderBullet: (index: any, className: any) => {
+      return '<span class="' + className + '">' + (index + 1) +'</span>';//
+    },
+  };
+
+  //!!! example
+  public config: SwiperOptions = {
+    modules: [Navigation],
+    navigation: true,
+    slidesPerView: 1,
+    injectStyles: [
+      `
+        :host .swiper-wrapper {background-color: red;}
+        :root {--swiper-theme-color: red;}
+      `,
+    ],
+};
 
   // @ViewChild('swiperCarousel', { static: false }) swiperCarousel!: ElementRef;
   // swiper2!: Swiper;
@@ -187,5 +229,4 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
       el: ".swiper-pagination",
     },
   }); */
-
 }

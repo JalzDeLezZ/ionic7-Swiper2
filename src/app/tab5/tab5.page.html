@@ -51,4 +51,15 @@
       <span #progressContent></span>
     </div>
   </div>
+  <ngx-particles
+    [id]="id"
+    [options]="particlesOptions"
+    (particlesLoaded)="particlesLoaded($event)"
+  ></ngx-particles>
+
+  <ngx-particles
+  [id]="id"
+  [url]="particlesUrl"
+  (particlesLoaded)="particlesLoaded($event)"
+></ngx-particles>
 </ion-content>

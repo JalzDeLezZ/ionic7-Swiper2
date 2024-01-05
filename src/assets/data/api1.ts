@@ -21,6 +21,20 @@ export const story_adds_api_responce = [
     },
   },
   {
+    id: 123,
+    type: 'link',
+    company: {
+      id: 1,
+      name: 'company name',
+      logo: 'https://picsum.photos/150/150',
+    },
+    post: {
+      title: 'Nuevos Kids Super Pollo',
+      subtitle: 'Nueva presentación, te invitamos a probarlos',
+      navigate: 'https://www.google.com',
+    }
+  },
+  {
     id: 0,
     // desctiption:
     //   'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.',

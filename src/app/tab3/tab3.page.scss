@@ -239,6 +239,10 @@
     padding-top: 50px;
     padding-bottom: 50px;
     z-index: 999;
+
+    .swiper-pagination {
+      background-color: red;
+    }
   }
 
   swiper-slide {
@@ -266,4 +270,43 @@ ion-icon {
 .swiper-scrollbar.swiper-scrollbar-horizontal {
   top: 9vh;
   display: flex;
+}
+
+.swiper-pagination {
+
+}
+
+.mySwiper-carousel {
+
+  background: red;
+  .swiper-pagination-bullet {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+    color: #000;
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.2);
+  }
+  .swiper-pagination-bullet-active {
+    color: #fff;
+    background: #ff0300;
+  }
+}
+
+
+.swiper-pagination-bullet {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  font-size: 12px;
+  color: orange;
+  opacity: 1;
+  background: green;
+}
+.swiper-pagination-bullet-active {
+  color: yellow !important;
+  background: #ff0003 !important;
 }
