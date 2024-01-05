@@ -74,27 +74,24 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
       ...this.swiperParams,
       on: {
         init: () => {
-          this.startSlideAutoPlayTimer();
+          //* this.startSlideAutoPlayTimer(); //UNCOMMENT
         },
         slideChange: () => {
           this.progress = 0;
           this.slideIndex = this.swiper.activeIndex;
         },
         reachEnd: () => {
-          this.progress = 0; // Reset progress on reachEnd
-          this.stopAutoPlay();
+          this.progress = 1; // Reset progress on reachEnd
+          this.ionViewDidLeave();
           this.restart = true;
         },
       },
     });
     this.slideChange$ = fromEvent(this.swiper.el, 'slideChange');
 
-    merge(this.slideChange$, this.progressReset$)
-    .subscribe(() => {
+    merge(this.slideChange$, this.progressReset$).subscribe(() => {
       this.progress = 0;
     });
-
-
   }
 
   onTest() {
@@ -105,14 +102,11 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
     this.isPaused$.next(!this.isPaused$.value);
   }
   onNext() {
-    this.progress = 0; // Reset progress on slide change
     this.swiper.slideNext();
   }
   onPrev() {
-    this.progress = 0; // Reset progress on slide change
     this.swiper.slidePrev();
     this.startSlideAutoPlayTimer(); // Restart autoplay if not paused
-
   }
 
   startSlideAutoPlayTimer() {
@@ -141,12 +135,18 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
         })
       )
       .subscribe();
-
   }
 
   ngOnDestroy() {
+    console.log('ngOnDestroy');
+  }
+
+  ionViewDidLeave() {
+    console.log("🚀 ~ file: tab3.page.ts:145 ~ Tab3Page ~ ionViewDidLeave ~ ionViewDidLeave:")
     this.onDestroy$.next();
     this.onDestroy$.complete();
+    this.autoPlaySubscription?.unsubscribe(); // Added cleanup
+    this.slideChangeSubscription?.unsubscribe(); // Added cleanup
   }
 
   onRestart() {
@@ -157,13 +157,35 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
     this.togglePauseResume();
   }
 
-  //! review this function
-  stopAutoPlay() {
-    this.onDestroy$.next();
-    this.onDestroy$.complete();
 
-    this.autoPlaySubscription?.unsubscribe();
-    this.slideChangeSubscription.unsubscribe();
-  }
+  // ? CAROUSEL SECTION
+  // ? CAROUSEL SECTION
+  // ? CAROUSEL SECTION
+
+  // @ViewChild('swiperCarousel', { static: false }) swiperCarousel!: ElementRef;
+  // swiper2!: Swiper;
+
+  // initCarouselSlide() {
+  //   this.swiper2 = new Swiper(this.swiperCarousel.nativeElement, {
+  //     ...this.swiperParams,
+  //   });
+  // }
+
+  /* var swiper = new Swiper(".mySwiper", {
+    effect: "coverflow",
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: "auto",
+    coverflowEffect: {
+      rotate: 50,
+      stretch: 200,
+      depth: 100,
+      modifier: 1,
+      slideShadows: true,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+    },
+  }); */
 
 }

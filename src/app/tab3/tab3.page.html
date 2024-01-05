@@ -5,87 +5,136 @@
     <div class="swiper-wrapper">
       <!-- Slides -->
       <div class="swiper-slide" *ngFor="let item of story_adds; let ii = index">
+        <header class="firsth">
+          <div class="actions">
+            <ion-icon name="apps"></ion-icon>
+            <ion-icon name="close-circle-outline"></ion-icon>
+          </div>
+
+          <!-- progress array per current index presentation-->
+          <!-- *ngFor="let progress of item.progress; let i = index" -->
+          <div class="progress-indicator">
+            <ion-progress-bar
+              *ngFor="let item of story_adds; let i = index"
+              [value]="(i === slideIndex) ? progress : 0"
+              [class.active]="i === slideIndex"
+            ></ion-progress-bar>
+          </div>
+        </header>
+
         <ng-container [ngSwitch]="item.type">
           <section *ngSwitchCase="'image'" class="image-section">
-            <div class="play_pause" (click)="togglePauseResume()">
-              <ion-icon name="play" *ngIf="isPaused$.value && !restart"></ion-icon>
-              <ion-icon name="pause" *ngIf="!isPaused$.value && !restart"></ion-icon>
-              <ion-icon (click)="onRestart()" *ngIf="restart" name="refresh"></ion-icon>
-            </div>
-
-            <div class="next_prev">
-              <ion-icon
-                (click)="onPrev()"
-                class="prev"
-                name="arrow-back-outline"
-              ></ion-icon>
-              <ion-icon
-                (click)="onNext()"
-                class="next"
-                name="arrow-forward-outline"
-              ></ion-icon>
-            </div>
-
-            <header class="firsth">
-              <div class="actions">
-                <ion-icon name="apps"></ion-icon>
-                <ion-icon name="close-circle-outline"></ion-icon>
-              </div>
-
-              <!-- progress array per current index presentation-->
-              <!-- *ngFor="let progress of item.progress; let i = index" -->
-              <div class="progress-indicator">
-                <ion-progress-bar
-                  *ngFor="let item of story_adds; let i = index"
-                  [value]="(i === slideIndex) ? progress : 0"
-                  [class.active]="i === slideIndex"
-                ></ion-progress-bar>
-              </div>
-            </header>
             <img [src]="item.url" alt="" />
-
-            <section class="information">
-              <div class="actions">
-                <ion-icon name="heart-outline"></ion-icon>
-                <ion-icon name="download-outline"></ion-icon>
-              </div>
-
-              <header class="second">
-                <figure class="logo">
-                  <span></span>
-                  <!-- src="/assets/icon/apprecioRed.png"  -->
-                  <img [src]="item.company.logo" alt="" />
-                </figure>
-                <article>
-                  <h2>Super Pollo</h2>
-                  <h5>
-                    Apprecio Play
-                    <ion-icon name="send"></ion-icon>
-                  </h5>
-                </article>
-
-                <button>Ir al programa</button>
-              </header>
-              <article class="description">
-                <p
-                  [ngClass]="{'more100': item.desctiption | lengthTextRegulation, 'active': flag_showMore}"
-                >
-                  {{item.desctiption}}
-                </p>
-                <a
-                  *ngIf="item.desctiption | lengthTextRegulation"
-                  class="showMore"
-                  (click)="flag_showMore = !flag_showMore"
-                >
-                  <span *ngIf="flag_showMore ; else tempElse">Ver más</span>
-                  <ng-template #tempElse>Ver menos</ng-template>
-                </a>
-                <a href=""></a>
-              </article>
-            </section>
           </section>
+            <section *ngSwitchCase="'carousel'" class="carousel-section">
+
+            <swiper-container
+              autoplay="true"
+              class="mySwiper-carousel"
+              pagination="true"
+              effect="coverflow"
+              grab-cursor="true"
+              centered-slides="true"
+              slides-per-view="auto"
+              coverflow-effect-rotate="60"
+              coverflow-effect-stretch="140"
+              coverflow-effect-depth="400"
+              coverflow-effect-modifier="1"
+              coverflow-effect-slide-shadows="true"
+            >
+              <swiper-slide>
+                <img src=" https://swiperjs.com/demos/images/nature-1.jpg" />
+              </swiper-slide>
+              <swiper-slide>
+                <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+              </swiper-slide>
+              <swiper-slide>
+                <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+              </swiper-slide>
+              <swiper-slide>
+                <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+              </swiper-slide>
+              <swiper-slide>
+                <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
+              </swiper-slide>
+            </swiper-container>
+
+            <!--! 222 Swiper 222 -->
+              <!-- <div class="swiper" #swiperCarousel>
+                <div class="swiper-wrapper">
+                <div class="swiper-slide">      <img src="https://swiperjs.com/demos/images/nature-1.jpg" />    </div>
+                <div class="swiper-slide">      <img src="https://swiperjs.com/demos/images/nature-2.jpg" />    </div>
+                <div class="swiper-slide">      <img src="https://swiperjs.com/demos/images/nature-3.jpg" />    </div>
+                <div class="swiper-slide">      <img src="https://swiperjs.com/demos/images/nature-4.jpg" />    </div>
+                <div class="swiper-slide">      <img src="https://swiperjs.com/demos/images/nature-5.jpg" />    </div>
+                <div class="swiper-slide">      <img src="https://swiperjs.com/demos/images/nature-6.jpg" />    </div>
+                <div class="swiper-slide">      <img src="https://swiperjs.com/demos/images/nature-7.jpg" />    </div>
+                <div class="swiper-slide">      <img src="https://swiperjs.com/demos/images/nature-8.jpg" />    </div>
+                <div class="swiper-slide">      <img src="https://swiperjs.com/demos/images/nature-9.jpg" />    </div>  </div>
+                <div class="swiper-pagination"></div>
+              </div> -->
+            </section>
           <section *ngSwitchDefault><h1>Other</h1></section>
         </ng-container>
+        <!-- ? %%%%%%%%%%% SLIDER CONTROLLERS %%%%%%%%%%% -->
+        <!-- *** <div class="play_pause" (click)="togglePauseResume()">
+          <ion-icon name="play" *ngIf="isPaused$.value && !restart"></ion-icon>
+          <ion-icon name="pause" *ngIf="!isPaused$.value && !restart"></ion-icon>
+          <ion-icon (click)="onRestart()" *ngIf="restart" name="refresh"></ion-icon>
+        </div>
+
+        <div class="next_prev">
+          <ion-icon
+            (click)="onPrev()"
+            class="prev"
+            name="arrow-back-outline"
+          ></ion-icon>
+          <ion-icon
+            (click)="onNext()"
+            class="next"
+            name="arrow-forward-outline"
+          ></ion-icon>
+        </div> -->
+        <!-- ? %%%%%%%%%%% ------------------- %%%%%%%%%%% -->
+
+        <section class="information">
+          <div class="actions">
+            <ion-icon name="heart-outline"></ion-icon>
+            <ion-icon name="download-outline"></ion-icon>
+          </div>
+
+          <header class="second">
+            <figure class="logo">
+              <span></span>
+              <!-- src="/assets/icon/apprecioRed.png"  -->
+              <img [src]="item.company.logo" alt="" />
+            </figure>
+            <article>
+              <h2>Super Pollo</h2>
+              <h5>
+                Apprecio Play
+                <ion-icon name="send"></ion-icon>
+              </h5>
+            </article>
+
+            <button>Ir al programa</button>
+          </header>
+          <article *ngIf="item.desctiption" class="description">
+            <p
+              [ngClass]="{'more100': item.desctiption | lengthTextRegulation, 'active': flag_showMore}"
+            >
+              {{item.desctiption}}
+            </p>
+            <a
+              *ngIf="item.desctiption | lengthTextRegulation"
+              class="showMore"
+              (click)="flag_showMore = !flag_showMore"
+            >
+              <span *ngIf="flag_showMore ; else tempElse">Ver más</span>
+              <ng-template #tempElse>Ver menos</ng-template>
+            </a>
+          </article>
+        </section>
       </div>
     </div>
   </div>

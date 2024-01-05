@@ -6,75 +6,21 @@
 }
 
 .swiper-slide {
-  background-color: rgb(51, 82, 85);
+  background-color: #000000;
   display: grid;
   place-items: center;
-}
+  position: relative;
 
-.play_pause {
-  position: absolute;
-  margin: auto;
-  // opacity: 0;
-  z-index: 2;
-  transition: opacity 0.3s ease-in-out;
-  &:hover {
-    opacity: 1;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 11vh;
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,0.6965379901960784) 0%, rgba(0,0,0,0.40242034313725494) 35%, rgba(255,255,255,0) 100%);
   }
-  ion-icon {
-    font-size: 30px;
-    background: #0000003b;
-    border-radius: 50%;
-    padding: 21px;
-  }
-}
-
-.next_prev {
-  position: absolute;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 6%;
-  // height: 50%;
-  align-items: center;
-
-  ion-icon {
-    font-size: 30px;
-    background: #0000003b;
-    border-radius: 50%;
-    padding: 21px;
-    // opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    &:hover {
-      opacity: 1;
-    }
-  }
-}
-
-// add .image-section before in the top background gradient
-.image-section:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 11vh;
-  background: rgb(0,0,0);
-  background: linear-gradient(180deg, rgba(0,0,0,0.6965379901960784) 0%, rgba(0,0,0,0.40242034313725494) 35%, rgba(255,255,255,0) 100%);
-}
-
-.image-section {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  background: rgb(2, 0, 36);
-  background: linear-gradient(
-    0deg,
-    rgba(2, 0, 36, 0.8954175420168067) 0%,
-    rgba(0, 0, 0, 0.6993391106442577) 35%,
-    rgba(255, 255, 255, 0) 100%
-  );
 
   header.firsth {
     width: 100%;
@@ -98,19 +44,7 @@
       }
     }
   }
-  img {
-    min-height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: auto;
-  }
-  button {
-    border-radius: 8px;
-    background: #fa345d;
-    height: 31px;
-    margin-left: auto;
-    padding: 8px 12px;
-  }
+
 
   .information {
     width: 100%;
@@ -124,6 +58,14 @@
       rgba(0, 0, 0, 0.6993391106442577) 35%,
       rgba(255, 255, 255, 0) 100%
     );
+
+    button {
+      border-radius: 8px;
+      background: #fa345d;
+      height: 31px;
+      margin-left: auto;
+      padding: 8px 12px;
+    }
 
     .actions {
       display: grid;
@@ -199,6 +141,117 @@
         }
       }
     }
+  }
+}
+
+.play_pause {
+  position: absolute;
+  margin: auto;
+  // opacity: 0;
+  z-index: 2;
+  transition: opacity 0.3s ease-in-out;
+  &:hover {
+    opacity: 1;
+  }
+  ion-icon {
+    font-size: 30px;
+    background: #0000003b;
+    border-radius: 50%;
+    padding: 21px;
+  }
+}
+
+.next_prev {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 6%;
+  // height: 50%;
+  align-items: center;
+
+  ion-icon {
+    font-size: 30px;
+    background: #0000003b;
+    border-radius: 50%;
+    padding: 21px;
+    // opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.image-section {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+
+  img {
+    min-height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+  }
+
+}
+
+// ? CAROUSEL SECTION
+// ? CAROUSEL SECTION
+// ? CAROUSEL SECTION
+
+.carousel-section {
+  width: 100vw;
+  height: 100vw;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 9;
+  display: grid;
+  place-content: center;
+
+  .swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 303px;
+    height: 303px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+
+  }
+
+  swiper-container .mySwiper-carousel {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    z-index: 999;
+  }
+
+  swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+    border-radius: 7px;
+  }
+
+  swiper-slide img {
+    display: block;
+    width: 100%;
   }
 }
 

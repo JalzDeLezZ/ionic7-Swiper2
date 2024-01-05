@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Header</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<div id="tsparticles"></div>
+<ion-content [fullscreen]="true">
+  <ion-button (click)="toInit()" expand="block" fill="clear" shape="round">
+    Click to Init
+  </ion-button>
+  <ion-button
+    (click)="setTargetDelay(6500)"
+    expand="block"
+    fill="clear"
+    shape="round"
+  >
+    Set Timer
+  </ion-button>
+
+  <ion-item>
+    <div class="play_pause" (click)="tooglePlayStop()">
+      <ion-icon name="play"></ion-icon>
+      <!-- <ion-icon name="play" *ngIf="isPaused$.value && !restart"></ion-icon>
+      <ion-icon name="pause" *ngIf="!isPaused$.value && !restart"></ion-icon>
+      <ion-icon (click)="onRestart()" *ngIf="restart" name="refresh"></ion-icon> -->
+    </div>
+  </ion-item>
+  <div class="content-progressBar">
+    <ion-progress-bar
+      *ngFor="let item of api; let i = index"
+      [value]="(i === slideIndex) ? ionProgressBar : 0"
+    ></ion-progress-bar>
+  </div>
+  <!-- Swiper -->
+  <div class="swiper mySwiper" #swiperElement>
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let item of api">
+        {{item.id}}-{{item.type}}
+      </div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+    <div class="autoplay-progress">
+      <svg viewBox="0 0 48 48" #progressCircle>
+        <circle cx="24" cy="24" r="20"></circle>
+      </svg>
+      <span #progressContent></span>
+    </div>
+  </div>
+</ion-content>

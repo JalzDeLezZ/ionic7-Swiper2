@@ -1,5 +1,5 @@
 import { IonicModule } from '@ionic/angular';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab3Page } from './tab3.page';
@@ -17,5 +17,6 @@ import { LengthTextRegulationPipe } from '../pipes/length-text-regulation.pipe';
     Tab3PageRoutingModule,
   ],
   declarations: [Tab3Page, LengthTextRegulationPipe],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class Tab3PageModule {}

@@ -27,11 +27,6 @@ import Swiper from 'swiper';
 import { SwiperOptions } from 'swiper/types';
 import { EMPTY } from 'rxjs';
 
-@Component({
-  selector: 'app-tab3',
-  templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss'],
-})
 export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
   public progress = 0;
   public slideIndex = 0;
