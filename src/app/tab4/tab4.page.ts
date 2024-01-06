@@ -84,6 +84,7 @@ const swiperParams2: SwiperOptions = {
 };
 
 const swiperParams: SwiperOptions = {
+  loop: true,
   injectStyles: [
     `
   .swiper-pagination-bullet {
@@ -99,7 +100,7 @@ const swiperParams: SwiperOptions = {
 
   .swiper-pagination-bullet-active {
     color: #fff;
-    background: #007aff;
+    background: orange;
   }
   `,
   ],

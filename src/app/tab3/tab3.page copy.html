@@ -16,7 +16,7 @@
           <div class="progress-indicator">
             <ion-progress-bar
               *ngFor="let item of story_adds; let i = index"
-              [value]="(i === slideIndex) ? 1 : 0"
+              [value]="(i === slideIndex) ? progress : 0"
               [class.active]="i === slideIndex"
             ></ion-progress-bar>
           </div>
@@ -26,10 +26,11 @@
           <section *ngSwitchCase="'image'" class="image-section">
             <img [src]="item.url" alt="" />
           </section>
-          <section *ngSwitchCase="'carousel'" class="carousel-section">
-            <!-- [injectStyles] = "injectStylesC" -->
-            <!-- [pagination]="false" -->
-            <swiper-container
+            <section *ngSwitchCase="'carousel'" class="carousel-section">
+
+              <!-- [injectStyles] = "injectStylesC" -->
+              <swiper-container
+              [pagination]="false"
               autoplay="true"
               class="mySwiper-carousel"
               effect="coverflow"
@@ -53,17 +54,38 @@
                 <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
               </swiper-slide>
               <swiper-slide>
+                <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+              </swiper-slide>
+              <swiper-slide>
                 <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
               </swiper-slide>
             </swiper-container>
-          </section>
+
+            <!-- <swiper-container swiperElement [config]="config" init="false">
+              <swiper-slide *ngFor="let i of [1,2,3]">
+                Slide {{i}}
+              </swiper-slide>
+            </swiper-container> -->
+
+            <!--! 222 Swiper 222 -->
+              <!-- <div class="swiper" #swiperCarousel>
+                <div class="swiper-wrapper">
+                <div class="swiper-slide">      <img src="https://swiperjs.com/demos/images/nature-1.jpg" />    </div>
+                <div class="swiper-slide">      <img src="https://swiperjs.com/demos/images/nature-2.jpg" />    </div>
+                <div class="swiper-slide">      <img src="https://swiperjs.com/demos/images/nature-3.jpg" />    </div>
+                <div class="swiper-slide">      <img src="https://swiperjs.com/demos/images/nature-4.jpg" />    </div>
+                <div class="swiper-slide">      <img src="https://swiperjs.com/demos/images/nature-5.jpg" />    </div>
+                <div class="swiper-slide">      <img src="https://swiperjs.com/demos/images/nature-6.jpg" />    </div>
+                <div class="swiper-slide">      <img src="https://swiperjs.com/demos/images/nature-7.jpg" />    </div>
+                <div class="swiper-slide">      <img src="https://swiperjs.com/demos/images/nature-8.jpg" />    </div>
+                <div class="swiper-slide">      <img src="https://swiperjs.com/demos/images/nature-9.jpg" />    </div>  </div>
+                <div class="swiper-pagination"></div>
+              </div> -->
+            </section>
           <section *ngSwitchDefault><h1>Other</h1></section>
         </ng-container>
-
-        <!-- ? %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
         <!-- ? %%%%%%%%%%% SLIDER CONTROLLERS %%%%%%%%%%% -->
-        <!-- ? %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-        <!-- <div class="play_pause" (click)="togglePauseResume()">
+        <div class="play_pause" (click)="togglePauseResume()">
           <ion-icon name="play" *ngIf="isPaused$.value && !restart"></ion-icon>
           <ion-icon name="pause" *ngIf="!isPaused$.value && !restart"></ion-icon>
           <ion-icon (click)="onRestart()" *ngIf="restart" name="refresh"></ion-icon>
@@ -80,7 +102,7 @@
             class="next"
             name="arrow-forward-outline"
           ></ion-icon>
-        </div> -->
+        </div>
         <!-- ? %%%%%%%%%%% ------------------- %%%%%%%%%%% -->
 
         <section class="information">

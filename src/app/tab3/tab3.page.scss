@@ -239,10 +239,6 @@
     padding-top: 50px;
     padding-bottom: 50px;
     z-index: 999;
-
-    .swiper-pagination {
-      background-color: red;
-    }
   }
 
   swiper-slide {
@@ -270,56 +266,4 @@ ion-icon {
 .swiper-scrollbar.swiper-scrollbar-horizontal {
   top: 9vh;
   display: flex;
-}
-
-.swiper-pagination {
-
-}
-
-.mySwiper-carousel {
-
-  background: red;
-  .swiper-pagination-bullet {
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    line-height: 20px;
-    font-size: 12px;
-    color: #000;
-    opacity: 1;
-    background: rgba(0, 0, 0, 0.2);
-  }
-  .swiper-pagination-bullet-active {
-    color: #fff;
-    background: #ff0300;
-  }
-}
-
-
-.swiper-pagination-bullet {
-  width: 20px;
-  height: 20px;
-  text-align: center;
-  line-height: 20px;
-  font-size: 12px;
-  color: orange;
-  opacity: 1;
-  background: green;
-}
-.swiper-pagination-bullet-active {
-  color: yellow !important;
-  background: #ff0003 !important;
-}
-
-swiper-container {
-  --swiper-pagination-bullet-inactive-color: var(--ion-color-step-200, #ff0000) !important;
-  --swiper-pagination-color: var(--ion-color-primary, #19f424) !important;
-  --swiper-pagination-progressbar-bg-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.25) !important;
-  --swiper-scrollbar-bg-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.1) !important;
-  --swiper-scrollbar-drag-bg-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.5) !important;
-}
-
-.swiper-pagination-bullet-active {
-  opacity: var(--swiper-pagination-bullet-opacity, 1);
-  background: orange !important;
 }

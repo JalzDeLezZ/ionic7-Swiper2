@@ -26,13 +26,8 @@ import { story_adds_api_responce } from 'src/assets/data/api1';
 import Swiper from 'swiper';
 import { SwiperOptions } from 'swiper/types';
 import { EMPTY } from 'rxjs';
-import { Navigation } from 'swiper/modules';
+import { Navigation } from 'swiper/modules'
 
-@Component({
-  selector: 'app-tab3',
-  templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss'],
-})
 export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
   public progress = 0;
   public slideIndex = 0;
@@ -54,7 +49,7 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
   slideChange$: any;
 
   story_adds = story_adds_api_responce;
-  flag_showMore = true; //✅
+  flag_showMore = true;
 
   @ViewChild('swiperElement', { static: false }) swiperElement!: ElementRef;
   swiper!: Swiper;
@@ -69,9 +64,6 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
   ngAfterViewInit() {
     this.initSlide();
   }
-  // ionViewDidEnter() {
-  //   this.initSlide();
-  // }
 
   initSlide() {
     this.swiper = new Swiper(this.swiperElement.nativeElement, {
@@ -81,12 +73,11 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
           //! this.startSlideAutoPlayTimer(); //UNCOMMENT
         },
         slideChange: () => {
-          //! this.progress = 1;
+          this.progress = 0;
           this.slideIndex = this.swiper.activeIndex;
-          console.log("🚀 ~ file: tab3.page.ts:86 ~ Tab3Page ~ initSlide ~ this.swiper.activeIndex:", this.swiper.activeIndex)
         },
         reachEnd: () => {
-          //! this.progress = 0; // Reset progress on reachEnd
+          this.progress = 1; // Reset progress on reachEnd
           this.ionViewDidLeave();
           this.restart = true;
         },
@@ -147,6 +138,9 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
   }
 
   ionViewDidLeave() {
+    console.log(
+      '🚀 ~ file: tab3.page.ts:145 ~ Tab3Page ~ ionViewDidLeave ~ ionViewDidLeave:'
+    );
     this.onDestroy$.next();
     this.onDestroy$.complete();
     this.autoPlaySubscription?.unsubscribe(); // Added cleanup
@@ -165,27 +159,69 @@ export class Tab3Page implements AfterViewInit, OnChanges, OnDestroy {
   // ? CAROUSEL SECTION
   // ? CAROUSEL SECTION
 
-  injectStylesC = [
-    `.swiper-pagination-bullet {
-      width: 20px;
-      height: 20px;
-      text-align: center;
-      line-height: 20px;
-      font-size: 12px;
-      color: orange;
-      opacity: 1;
-      background: green;
-    }
-    .swiper-pagination-bullet-active {
-      color: yellow !important;
-      background: #ff0003 !important;
-    }`,
-  ];
+//   injectStylesC = [
+//     `
+
+// .swiper-pagination-bullet {
+//   width: 20px;
+//   height: 20px;
+//   text-align: center;
+//   line-height: 20px;
+//   font-size: 12px;
+//   color: orange;
+//   opacity: 1;
+//   background: green;
+// }
+// .swiper-pagination-bullet-active {
+//   color: yellow !important;
+//   background: #ff0003 !important;
+// }
+//     `,
+//   ];
 
   paginationC = {
     clickable: true,
     renderBullet: (index: any, className: any) => {
-      return '<span class="' + className + '">' + (index + 1) + '</span>'; //
+      return '<span class="' + className + '">' + (index + 1) +'</span>';//
     },
   };
+
+  //!!! example
+  public config: SwiperOptions = {
+    modules: [Navigation],
+    navigation: true,
+    slidesPerView: 1,
+    injectStyles: [
+      `
+        :host .swiper-wrapper {background-color: red;}
+        :root {--swiper-theme-color: red;}
+      `,
+    ],
+};
+
+  // @ViewChild('swiperCarousel', { static: false }) swiperCarousel!: ElementRef;
+  // swiper2!: Swiper;
+
+  // initCarouselSlide() {
+  //   this.swiper2 = new Swiper(this.swiperCarousel.nativeElement, {
+  //     ...this.swiperParams,
+  //   });
+  // }
+
+  /* var swiper = new Swiper(".mySwiper", {
+    effect: "coverflow",
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: "auto",
+    coverflowEffect: {
+      rotate: 50,
+      stretch: 200,
+      depth: 100,
+      modifier: 1,
+      slideShadows: true,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+    },
+  }); */
 }
