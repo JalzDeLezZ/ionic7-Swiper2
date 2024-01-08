@@ -11,3 +11,10 @@
 * [Per Angular DOC](https://github.com/tsparticles/angular?tab=readme-ov-file)
 * [confetti ts](https://github.com/tsparticles/presets/tree/main/presets/confetti#readme)
 * [confetti ts](https://github.com/tsparticles/tsparticles?tab=readme-ov-file#confetti)
+
+
+### ANIMATE CSS
+
+```bash
+  $ npm install animate.css --save
+```

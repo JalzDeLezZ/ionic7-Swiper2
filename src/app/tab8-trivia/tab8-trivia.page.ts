@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Tab8TriviaPage implements OnInit {
 
+  animateCss= 'animate__bounceOut'
+  flagAnimate = false;
+
+  coinAnimate = {
+    enable : false,
+  }
+
   constructor() { }
 
   ngOnInit() {
+    return;
+  }
+
+  earnPoints() {
+    this.coinAnimate.enable = this.coinAnimate.enable ? false : true;
   }
 
 }

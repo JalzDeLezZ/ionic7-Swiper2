@@ -31,7 +31,7 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss", "node_modules/swiper/swiper-bundle.min.css"
+            "styles": ["src/theme/variables.scss", "src/global.scss", "node_modules/swiper/swiper-bundle.min.css", "node_modules/animate.css/animate.min.css"
           ],
             "scripts": [
               "node_modules/swiper/swiper-element-bundle.min.js",
@@ -115,7 +115,7 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss", "node_modules/swiper/swiper-bundle.min.css"
+            "styles": ["src/theme/variables.scss", "src/global.scss", "node_modules/swiper/swiper-bundle.min.css" , "node_modules/animate.css/animate.min.css"
           ],
             "scripts": [
               "node_modules/swiper/swiper-element-bundle.min.js",

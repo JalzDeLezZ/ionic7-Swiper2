@@ -22,7 +22,9 @@
         <ion-radio value="grapes" labelPlacement="end">Grapes</ion-radio>
       </ion-item>
       <ion-item>
-        <ion-radio value="strawberries" labelPlacement="end">Strawberrie</ion-radio>
+        <ion-radio value="strawberries" labelPlacement="end"
+          >Strawberrie</ion-radio
+        >
       </ion-item>
     </ion-radio-group>
     <footer>
@@ -30,4 +32,50 @@
       <button>Enviar</button>
     </footer>
   </section>
+  <ion-grid fixed>
+    <ion-row>
+      <h1 class="animate__animated animate__heartBeat animate__infinite">
+        An animated element
+      </h1>
+      <div class="animate__animated animate__bounce animate__repeat-2">
+        Example
+      </div>
+    </ion-row>
+    <ion-row>
+      <ion-button
+        [class]="flagAnimate ? animateCss : ''"
+        (click)="flagAnimate = !flagAnimate;
+        animateCss = flagAnimate ? 'animate__animated animate__bounce animate__repeat-2' : '';
+        "
+        expand="block"
+        fill="clear"
+        shape="round"
+      >
+        Click me
+      </ion-button>
+    </ion-row>
+    <ion-row>
+      <ion-button
+        (click)="earnPoints()"
+        expand="block"
+        fill="clear"
+        shape="round"
+      >
+        Click me
+      </ion-button>
+    </ion-row>
+
+    <ion-row>
+      <figure
+        class="earnPoints animate__animated animate__zoomIn"
+      [ngStyle]="{'display': coinAnimate.enable ? 'flex' : 'none'}">
+        <img
+          class="animate__animated animate__backInUp"
+          src="/assets/icon/coin.svg"
+          alt=""
+        />
+        <h3>Ganaste 10 Pts</h3>
+      </figure>
+    </ion-row>
+  </ion-grid>
 </ion-content>
