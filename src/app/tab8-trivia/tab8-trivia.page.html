@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>tab8-trivia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <section class="form-trivia">
+    <span class="type">Trivia</span>
+    <header>
+      <figure>
+        <img src="https://picsum.photos/200/200.jpg" alt="" />
+      </figure>
+      <h2>Encuentra la respuesta correcta y gana 50 Pts.</h2>
+    </header>
+    <h3>¿En qué año salió nuestro producto Nuggets de Pollo Spicy?</h3>
+    <ion-radio-group value="end" mode="md" class="">
+      <ion-item lines="none" class="success">
+        <ion-radio value="end" labelPlacement="end">Pokémon Yellow</ion-radio>
+      </ion-item>
+      <ion-item class="error">
+        <ion-radio value="grapes" labelPlacement="end">Grapes</ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-radio value="strawberries" labelPlacement="end">Strawberrie</ion-radio>
+      </ion-item>
+    </ion-radio-group>
+    <footer>
+      <h5>Esta encuesta te da 50 Puntos Apprecio</h5>
+      <button>Enviar</button>
+    </footer>
+  </section>
+</ion-content>

@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'tab7',
     loadChildren: () => import('./tab7/tab7.module').then( m => m.Tab7PageModule)
+  },
+  {
+    path: 'tab8-trivia',
+    loadChildren: () => import('./tab8-trivia/tab8-trivia.module').then( m => m.Tab8TriviaPageModule)
   }
 ];
 @NgModule({

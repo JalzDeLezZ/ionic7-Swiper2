@@ -1,0 +1,103 @@
+.form-trivia {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 350px;
+  margin: 10px auto;
+  position: relative;
+
+  span.type {
+    position: absolute;
+    color: white;
+    background: #45c1ad;
+    right: 0px;
+    top: 0px;
+    padding: 4px 8px 4px 8px;
+    border-radius: 0px 8px 0px 8px;
+  }
+  header {
+    display: grid;
+    grid-template-columns: 80px 74%;
+    gap: 3%;
+    align-items: center;
+    place-content: start;
+    figure {
+      width: 80px;
+      height: 80px;
+      overflow: hidden;
+      place-content: center;
+      display: grid;
+      margin: 0;
+      border-radius: 50%;
+    }
+    h2 {
+      color: #1b1b1b;
+      font-size: 16px;
+    }
+  }
+  h3 {
+    text-align: center;
+    font-size: 14px;
+    color: #1b1b1b;
+    margin: 20px;
+  }
+  ion-radio-group {
+    position: relative;
+    width: calc(100% + 40px);
+    display: block;
+    left: -20px;
+
+    ion-item {
+      --background: #ffffff00;
+      --background-activated: #00000007;
+      --background-activated-opacity: 1;
+      --background-focused: #00000007;
+      --background-focused-opacity: 1;
+      --background-hover: #00000007;
+      --background-hover-opacity: 1;
+
+      --color: #ffffff;
+      --color-activated: #fff;
+      --color-focused: #fff;
+      --color-hover: #fff;
+      --detail-icon-color: #989aa2;
+      --detail-icon-opacity: 1;
+      --transition: background-color 15ms linear;
+      --border-style: none;
+
+      &.success {
+        --background: hsl(170, 50%, 51%, 20%);
+        ion-radio {
+          color: #45C1AD;
+        }
+      }
+      &.error {
+        ion-radio {
+          color: #FA345D;
+        }
+        --background: hsl(0, 50%, 51%, 20%);
+      }
+    }
+  }
+  ion-radio {
+    // --border-radius: 8px;
+    --color: #fa345e;
+    --color-checked: #fa345e;
+    // --inner-border-radius: 2px
+    color: #6b6b6b;
+  }
+  footer {
+    display: flex;
+    h5 {
+      color: #6b6b6b;
+      font-size: 10px;
+    }
+    button {
+      background: #fa345d;
+      padding: 8px 12px 8px 12px;
+      border-radius: 8px;
+      height: fit-content;
+      margin: auto 0px auto auto;
+    }
+  }
+}
