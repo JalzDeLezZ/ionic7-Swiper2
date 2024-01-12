@@ -1,0 +1,45 @@
+<div class="progress-indicator">
+  <!-- <ion-progress-bar
+    [value]="media.currentTime / media.duration"
+  ></ion-progress-bar> -->
+  <!-- [ngStyle]="{'width': progressValue}" -->
+  <span
+    class="progress"
+    [ngStyle]="{ width: (media.currentTime / media.duration) * 100 + '%' }"
+  ></span>
+</div>
+{{ progressValue }}
+<div class="video-player-wrapper">
+  <div class="progress-cont">
+    <ion-progress-bar
+      *ngFor="let vdo of videoItems; let $index = index"
+      [value]="vdo === currentVideo ? 1 : 0"
+    >
+    </ion-progress-bar>
+  </div>
+  <vg-player (onPlayerReady)="videoPlayerInit($event)">
+    <vg-controls>
+      <vg-mute></vg-mute>
+      <vg-play-pause></vg-play-pause>
+      <vg-fullscreen></vg-fullscreen>
+    </vg-controls>
+    <video
+      #media
+      [vgMedia]="$any(media)"
+      [src]="currentVideo.src | safeResourceURL"
+      id="singleVideo"
+      preload="auto"
+      crossorigin
+    ></video>
+  </vg-player>
+
+  <ul class="player-list">
+    <li
+      *ngFor="let vdo of videoItems; let $index = index"
+      (click)="startPlaylistVdo(vdo, $index)"
+      [class.selected]="vdo === currentVideo"
+    >
+      {{ vdo.name }}
+    </li>
+  </ul>
+</div>

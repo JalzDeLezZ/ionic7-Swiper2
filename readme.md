@@ -18,3 +18,13 @@
 ```bash
   $ npm install animate.css --save
 ```
+
+### VIDEO GULAR NGX
+
+```bash
+npm install @videogular/ngx-videogular --save
+npm install @types/core-js --save-dev
+
+styles:
+"./node_modules/@videogular/ngx-videogular/fonts/videogular.css"
+```
