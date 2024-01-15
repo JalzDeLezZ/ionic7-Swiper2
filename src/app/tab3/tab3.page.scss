@@ -199,6 +199,60 @@
 
 }
 
+
+
+// ? LINK SECTION
+// ? LINK SECTION
+// ? LINK SECTION
+
+.link-section {
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+  position: relative;
+
+  display: grid;
+  place-content: center;
+  place-items: center;
+  align-items: center;
+
+
+.demo-bg {
+  opacity: 0.3;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+}
+
+  .content {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 60%;
+    text-align: center;
+    h2 {
+      font-size: 32px;
+      margin: 0;
+    }
+    h3 {
+      font-size: 16px;
+      margin: 48px 0;
+    }
+    a {
+      text-decoration: none;
+      color: #000;
+      font-weight: 600;
+      font-size: 16px;
+      background: white;
+      padding: 12px 24px;
+      border-radius: 4px;
+    }
+  }
+}
+
 // ? CAROUSEL SECTION
 // ? CAROUSEL SECTION
 // ? CAROUSEL SECTION

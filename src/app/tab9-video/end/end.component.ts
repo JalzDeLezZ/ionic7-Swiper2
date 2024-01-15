@@ -19,6 +19,11 @@ export class EndComponent implements OnInit {
       type: 'video/mp4',
     },
     {
+      name: 'Video CCC',
+      src: 'https://media.vimejs.com/720p.mp4',
+      type: 'video/mp4',
+    },
+    {
       name: 'Video three',
       // this.sanitizer.bypassSecurityTrustResourceUrl()
       //!X CORS ERROR: src: 'https://exit109.com/~dnn/clips/RW20seconds_1.mp4',

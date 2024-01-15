@@ -28,3 +28,6 @@ npm install @types/core-js --save-dev
 styles:
 "./node_modules/@videogular/ngx-videogular/fonts/videogular.css"
 ```
+
+* [VgControls @Component](https://github.com/videogular/ngx-videogular/tree/master/docs/ngx-videogular-demo/modules/controls/vg-controls)
+
