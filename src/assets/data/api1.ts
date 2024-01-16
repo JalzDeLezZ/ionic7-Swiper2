@@ -3,6 +3,79 @@
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 
 export const story_adds_api_responce = [
+
+  {
+    id: 222,
+    type: 'form',
+    company: {
+      id: 1,
+      name: 'Form NAME company',
+      logo: 'https://picsum.photos/150/150',
+    },
+    form: {
+      title: 'Pre-regístrate en nuestro programa La Crianza',
+      subtitle: 'Nueva presentación, te invitamos a probarlos',
+      navigate: 'https://www.google.com',
+      fields: [
+        {
+          id: 1,
+          type: 'text',
+          label: 'Nombre',
+          placeholder: 'Nombre',
+          required: true,
+        },
+        // {
+        //   id: 2,
+        //   type: 'text',
+        //   label: 'Apellido',
+        //   placeholder: 'Apellido',
+        //   required: true,
+        // },
+        {
+          id: 3,
+          type: 'email',
+          label: 'Email',
+          placeholder: 'Email',
+          required: true,
+        },
+        // {
+        //   id: 4,
+        //   type: 'number',
+        //   label: 'Telefono',
+        //   placeholder: 'Telefono',
+        //   required: true,
+        // },
+        // {
+        //   id: 5,
+        //   type: 'select',
+        //   label: 'Departamento',
+        //   placeholder: 'Departamento',
+        //   required: true,
+        //   options: [
+        //     {
+        //       id: 1,
+        //       value: 'Montevideo',
+        //     },
+        //     {
+        //       id: 2,
+        //       value: 'Canelones',
+        //     },
+        //     {
+        //       id: 3,
+        //       value: 'Maldonado',
+        //     },
+        //   ],
+        // },
+        // {
+        //   id: 6,
+        //   type: 'checkbox',
+        //   label: 'Acepto los terminos y condiciones',
+        //   placeholder: 'Acepto los terminos y condiciones',
+        //   required: true,
+        // },
+      ],
+    }
+  },
   {
     id: 1,
     desctiption: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
@@ -16,7 +89,7 @@ export const story_adds_api_responce = [
     url: 'https://picsum.photos/450/800',
     company: {
       id: 1,
-      name: 'company name',
+      name: 'Super Chicken',
       logo: 'https://picsum.photos/150/150',
     },
   },
@@ -25,7 +98,7 @@ export const story_adds_api_responce = [
     type: 'link',
     company: {
       id: 1,
-      name: 'company name',
+      name: 'Company Second',
       logo: 'https://picsum.photos/150/150',
     },
     post: {
@@ -34,10 +107,6 @@ export const story_adds_api_responce = [
       navigate: 'https://www.google.com',
     }
   },
-  // {
-  //   id: 222,
-  //   type: 'form',
-  // },
   {
     id: 0,
     // desctiption:
