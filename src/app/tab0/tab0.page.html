@@ -1,0 +1,110 @@
+<ion-content [fullscreen]="true">
+  <ion-fab
+    slot="fixed"
+    horizontal="center"
+    vertical="bottom"
+    class="status-story"
+  >
+    <ion-fab-button class="ifab-btn">
+      <ion-icon name="color-wand-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="end">
+      <ion-fab-button (click)="onInitialSlide()">
+        <ion-icon name="document"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button>
+        <ion-icon
+          [name]="!swiperPaused ?  'pause' : 'play'"
+          (click)="onPlauPauseSwiper()"
+        ></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button>
+        <ion-icon name="hourglass-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <app-status-circle [api]="[1]"></app-status-circle>
+
+  <svg width="100" height="100" viewBox="0 0 100 100" class="border-story">
+    <circle
+      cx="50"
+      cy="50"
+      r="48"
+      fill="none"
+      [attr.stroke-dasharray]="numberOfDots + ' 2'"
+      [attr.stroke-dashoffset]="numberOfDots"
+    />
+  </svg>
+
+  <svg class="status-gradient" width="100" height="100" viewBox="0 0 100 100" (click)="onClickEffect()">
+    <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2ed8a7" />
+      <stop offset="100%" stop-color="#a6ceff" />
+    </linearGradient>
+    <circle
+      [class.clickEffect]="clickEffect1"
+      stroke-linecap="round"
+      cx="50"
+      cy="50"
+      r="48"
+      stroke="url(#linear)"
+      stroke-width="4"
+      fill="none"
+      stroke-dasharray="315"
+      stroke-dashoffset="100"
+      stroke-mitterlimit="0"
+      transform="rotate(-90 ) translate(-100 0)"
+    />
+  </svg>
+
+  <!-- Circle Border in 2 -->
+  <svg width="100" height="100" viewBox="0 0 100 100">
+    <circle
+      cx="50"
+      cy="50"
+      r="48"
+      fill="none"
+      stroke="green"
+      stroke-width="4"
+      stroke-dasharray="150 2"
+      stroke-dashoffset="-2"
+    />
+  </svg>
+
+  <!-- Circle Border in 3 -->
+  <svg width="100" height="100" viewBox="0 0 100 100">
+    <circle
+      cx="50"
+      cy="50"
+      r="48"
+      fill="none"
+      stroke="green"
+      stroke-width="4"
+      stroke-dasharray="100 2"
+      stroke-dashoffset="-2"
+    />
+  </svg>
+
+  <div class="content-progressBar">
+    <ion-progress-bar
+      *ngFor="let item of api; let i = index"
+      [value]="(i === swiperCurrentIndex) ? swiperProgress : 0"
+    ></ion-progress-bar>
+  </div>
+
+  <!-- Slider main container -->
+  <div class="swiper" #swiperElement>
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      <div class="swiper-slide" *ngFor="let item of api; let i = index">
+        {{item.id}} -- {{i}}
+      </div>
+    </div>
+
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</ion-content>

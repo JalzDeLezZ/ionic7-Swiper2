@@ -25,6 +25,10 @@ const routes: Routes = [
   {
     path: 'tab9-video',
     loadChildren: () => import('./tab9-video/tab9-video.module').then( m => m.Tab9VideoPageModule)
+  },
+  {
+    path: 'tab0',
+    loadChildren: () => import('./tab0/tab0.module').then( m => m.Tab0PageModule)
   }
 ];
 @NgModule({

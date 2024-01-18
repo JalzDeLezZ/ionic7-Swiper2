@@ -180,6 +180,65 @@ export const story_adds_api_responce = [
 
 ];
 
+export const only_images_api_responce = [
+  {
+    id: 1,
+    desctiption: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+      voluptatum, voluptate, quibusdam, quia voluptas quos
+      exercitationem voluptatibus quod quas doloribus quidem
+      voluptatem. Quisquam voluptatum, voluptate, quibusdam, quia
+      voluptas quos exercitationem voluptatibus quod quas doloribus
+      quidem voluptatem.`,
+    likes: 10,
+    type: 'image',
+    url: 'https://picsum.photos/450/800',
+    company: {
+      id: 1,
+      name: 'Super Chicken',
+      logo: 'https://picsum.photos/150/150',
+    },
+  },
+  {
+    id: 3,
+    desctiption:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.',
+    likes: 900,
+    type: 'image',
+    url: 'https://picsum.photos/450/810',
+    company: {
+      id: 3,
+      name: 'Third',
+      logo: 'https://picsum.photos/150/150',
+    },
+  },
+  {
+    id: 4,
+    desctiption:
+      'Fourt ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.',
+    likes: 900,
+    type: 'image',
+    url: 'https://picsum.photos/450/810',
+    company: {
+      id: 3,
+      name: 'Third',
+      logo: 'https://picsum.photos/150/150',
+    },
+  },
+  {
+    id: 5,
+    desctiption:
+      'Five ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.',
+    likes: 900,
+    type: 'image',
+    url: 'https://picsum.photos/450/810',
+    company: {
+      id: 3,
+      name: 'Third',
+      logo: 'https://picsum.photos/150/150',
+    },
+  },
+];
+
 export interface IFakeRes {
   id: number;
   desctiption: string;

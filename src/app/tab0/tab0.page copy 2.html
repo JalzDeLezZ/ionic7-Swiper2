@@ -1,0 +1,27 @@
+<ion-content [fullscreen]="true">
+
+  <div class="content-progressBar">
+    <ion-progress-bar
+      *ngFor="let item of api; let i = index"
+      [value]="(i === slideIndex) ? 1 : 0"
+    ></ion-progress-bar>
+  </div>
+
+  <!-- Swiper -->
+  <div class="swiper mySwiper" #swiperElement>
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let item of api">
+        {{item.id}}-{{item.type}}
+      </div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+    <div class="autoplay-progress">
+      <svg viewBox="0 0 48 48" #progressCircle>
+        <circle cx="24" cy="24" r="20"></circle>
+      </svg>
+      <span #progressContent></span>
+    </div>
+  </div>
+</ion-content>

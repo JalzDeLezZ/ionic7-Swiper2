@@ -1,0 +1,61 @@
+<!-- <svg #circle width="100" height="100" viewBox="0 0 100 100">
+  <circle
+    cx="50"
+    cy="50"
+    r="48"
+    fill="none"
+    stroke="green"
+    stroke-width="3"
+    [attr.stroke-dasharray]="
+      calculateCircleDasharray(api.length).toString() + ' 2'
+    "
+    [attr.stroke-dashoffset]="
+      calculateCircleDashoffset(swiperCurrentIndex).toString()
+    "
+  />
+  <!-- stroke-linecap="round" -- >
+
+</svg> -->
+<!-- <svg #circle width="100" height="100" viewBox="0 0 100 100">
+  <circle
+    cx="50"
+    cy="50"
+    r="48"
+    fill="none"
+    stroke="green"
+    stroke-width="3"
+    [attr.stroke-dasharray]="calculateCircleDasharray(api.length).toString() + ' ' + calculateCircleDasharray(api.length * 2).toString()"
+    [attr.stroke-dashoffset]="calculateCircleDashoffset(swiperCurrentIndex).toString()"
+  />
+</svg> -->
+<!-- status-circle-component.component.html -->
+<!-- <svg #circle width="100" height="100" viewBox="0 0 100 100">
+  <circle
+    #circleElement
+    cx="50"
+    cy="50"
+    r="48"
+    fill="none"
+    stroke="green"
+    stroke-width="3"
+    [attr.stroke-dasharray]="calculateCircleDasharray(api.length).toString() + ' ' + calculateCircleDasharray(api.length * 2).toString()"
+    [attr.stroke-dashoffset]="calculateCircleDashoffset(swiperCurrentIndex, circleElement).toString()"
+  />
+</svg>
+ -->
+
+ √
+ <!-- status-circle-component.component.html -->
+<svg #circle width="100" height="100" viewBox="0 0 100 100">
+  <circle
+    #circleElement
+    cx="50"
+    cy="50"
+    r="48"
+    fill="none"
+    stroke="green"
+    stroke-width="4"
+    [attr.stroke-dasharray]="calculateCircleDasharray(api.length).toString() + ' ' + calculateCircleDasharray(api.length * 2).toString()"
+    [attr.stroke-dashoffset]="calculateCircleDashoffset(swiperCurrentIndex, circleElement).toString()"
+  />
+</svg>

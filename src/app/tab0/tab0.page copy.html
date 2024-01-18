@@ -1,0 +1,35 @@
+<ion-content [fullscreen]="true">
+
+  <div class="content-progressBar">
+    <ion-progress-bar
+      *ngFor="let item of api; let i = index"
+      [value]="(i === swiperCurrentIndex) ? swiperProgress : 0"
+    ></ion-progress-bar>
+  </div>
+
+  <!-- Slider main container -->
+  <div class="swiper" #swiperElement>
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      <div class="swiper-slide"
+        *ngFor="let item of api; let i = index"
+      >Slide 1</div>
+      ...
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div> <!-- (click)="slidePrev()" -->
+    <div class="swiper-button-next"></div> <!-- (click)="slideNext()" -->
+
+    <!-- If we need scrollbar -->
+    <div class="swiper-scrollbar"></div>
+  </div>
+
+  <ion-button (click)="onUpdate()" expand="block" fill="clear" shape="round">
+    Update
+  </ion-button>
+
+</ion-content>
