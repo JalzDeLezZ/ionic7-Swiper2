@@ -1,14 +1,104 @@
 <ion-content [fullscreen]="true">
+  <!-- !HEADER -->
+  <header class="firsth">
+    <div class="actions">
+      <ion-icon name="apps"></ion-icon>
+      <ion-icon name="close-circle-outline"></ion-icon>
+    </div>
+
+    <div class="progress-indicator">
+      <ion-progress-bar
+        *ngFor="let item of api; let i = index"
+        [value]="(i === swiperCurrentIndex) ? swiperProgress : 0"
+      ></ion-progress-bar>
+    </div>
+  </header>
+  <!-- !------- -->
+
+  <!--?############ Slides ?############-->
+  <div class="swiper" #swiperElement>
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let item of api; let i = index">
+        <ng-container [ngSwitch]="item.type">
+          <app-only-image
+            [api_item]="item"
+            *ngSwitchCase="'image'">
+          </app-only-image>
+          <app-form-add
+            [api_item]="item"
+            *ngSwitchCase="'form'"></app-form-add>
+          <app-carousel
+            [api_item]="item"
+            *ngSwitchCase="'carousel'"
+          ></app-carousel>
+          <app-link-redirect
+            [api_item]="item"
+            *ngSwitchCase="'link'"
+          ></app-link-redirect>
+          <app-movie
+            [api_item]="item"
+            *ngSwitchCase="'video'"></app-movie>
+          <p *ngSwitchDefault>Default</p>
+        </ng-container>
+
+        <!-- !FOOTER -->
+        <footer class="information">
+          <div class="actions">
+            <ion-icon name="heart-outline"></ion-icon>
+            <ion-icon name="download-outline"></ion-icon>
+          </div>
+
+          <header class="second">
+            <figure class="logo">
+              <span></span>
+              <!-- src="/assets/icon/apprecioRed.png"  -->
+              <img [src]="item.company.logo" alt="" />
+            </figure>
+            <article>
+              <h2>{{item.company.name}}</h2>
+              <h5>
+                Apprecio Play
+                <ion-icon name="send"></ion-icon>
+              </h5>
+            </article>
+
+            <button>Ir al programa</button>
+          </header>
+          <article *ngIf="item.desctiption" class="description">
+            <p
+              [ngClass]="{'more100': item.desctiption | lengthTextRegulation, 'active': flag_showMore}"
+            >
+              {{item.desctiption}}
+            </p>
+            <a
+              *ngIf="item.desctiption | lengthTextRegulation"
+              class="showMore"
+              (click)="flag_showMore = !flag_showMore"
+            >
+              <span *ngIf="flag_showMore ; else tempElse">Ver más</span>
+              <ng-template #tempElse>Ver menos</ng-template>
+            </a>
+          </article>
+        </footer>
+        <!-- !------- -->
+      </div>
+    </div>
+
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+
   <ion-fab
     slot="fixed"
     horizontal="center"
-    vertical="bottom"
+    vertical="start"
     class="status-story"
   >
     <ion-fab-button class="ifab-btn">
       <ion-icon name="color-wand-outline"></ion-icon>
     </ion-fab-button>
-    <ion-fab-list side="end">
+    <ion-fab-list side="bottom">
       <ion-fab-button (click)="onInitialSlide()">
         <ion-icon name="document"></ion-icon>
       </ion-fab-button>
@@ -23,27 +113,4 @@
       </ion-fab-button>
     </ion-fab-list>
   </ion-fab>
-
-
-  <div class="content-progressBar">
-    <ion-progress-bar
-      *ngFor="let item of api; let i = index"
-      [value]="(i === swiperCurrentIndex) ? swiperProgress : 0"
-    ></ion-progress-bar>
-  </div>
-
-  <!-- Slider main container -->
-  <div class="swiper" #swiperElement>
-    <!-- Additional required wrapper -->
-    <div class="swiper-wrapper">
-      <!-- Slides -->
-      <div class="swiper-slide" *ngFor="let item of api; let i = index">
-        {{item.id}} -- {{i}}
-      </div>
-    </div>
-
-    <!-- If we need navigation buttons -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-  </div>
 </ion-content>

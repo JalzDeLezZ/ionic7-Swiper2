@@ -1,5 +1,8 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { only_images_api_responce } from 'src/assets/data/api1';
+import {
+  only_images_api_responce,
+  story_adds_api_responce,
+} from 'src/assets/data/api1';
 import Swiper from 'swiper';
 import { SwiperOptions } from 'swiper/types';
 
@@ -9,12 +12,12 @@ import { SwiperOptions } from 'swiper/types';
   styleUrls: ['./tab0.page.scss'],
 })
 export class Tab0Page implements AfterViewInit {
-
-  api = only_images_api_responce;
+  api = story_adds_api_responce;
+  flag_showMore = true;
 
   swiper!: Swiper;
   swiperPaused: boolean = false;
-  swiperProgress: number = 0;
+  swiperProgress: number = 0.6; //! *** 0
   swiperCurrentIndex: number = 0;
   @ViewChild('swiperElement', { static: false }) swiperElement!: ElementRef;
 
@@ -32,10 +35,11 @@ export class Tab0Page implements AfterViewInit {
     const swiperParams: SwiperOptions = {
       loop: false,
       speed: 400,
-      autoplay: {
-        delay: 2000,
-        disableOnInteraction: false,
-      },
+      allowTouchMove: false,
+      // !autoplay: {
+      //   delay: 2000,
+      //   disableOnInteraction: false,
+      // },
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
@@ -76,5 +80,4 @@ export class Tab0Page implements AfterViewInit {
     }
     this.swiperPaused = !this.swiperPaused;
   }
-
 }

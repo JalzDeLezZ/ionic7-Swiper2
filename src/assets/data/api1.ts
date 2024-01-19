@@ -5,6 +5,19 @@
 export const story_adds_api_responce = [
 
   {
+    id: 987,
+    desctiption:
+      'Fourt ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.',
+    likes: 400,
+    type: 'image',
+    url: 'https://picsum.photos/450/810',
+    company: {
+      id: 3,
+      name: 'Third',
+      logo: 'https://picsum.photos/150/150',
+    },
+  },
+  {
     id: 222,
     type: 'form',
     company: {
@@ -125,7 +138,7 @@ export const story_adds_api_responce = [
       logo: 'https://picsum.photos/150/150',
     },
   },
-  /* {
+  {
     id: 2,
     desctiption: 'This is a test string for the description of the video',
     likes: 6,
@@ -136,7 +149,7 @@ export const story_adds_api_responce = [
       name: 'Second company name',
       logo: 'https://via.placeholder.com/150',
     }
-  }, */
+  },
   {
     id: 3,
     desctiption:
