@@ -31,3 +31,11 @@ styles:
 
 * [VgControls @Component](https://github.com/videogular/ngx-videogular/tree/master/docs/ngx-videogular-demo/modules/controls/vg-controls)
 
+
+### STATUS STYLE
+
+* [gradiend](https://codepen.io/evth/pen/zBNqrL)
+* [Hormigas Andadadoras Effect](https://w3.unpocodetodo.info/svg/hormigas-andadoras.php)
+* [How to Animate SVG Strokes](https://youtu.be/-Na_WRk3k74)
+* [Border Generator](https://kovart.github.io/dashed-border-generator/)
+

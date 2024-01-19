@@ -7,10 +7,9 @@ import { IonicModule } from '@ionic/angular';
 import { Tab0PageRoutingModule } from './tab0-routing.module';
 
 import { Tab0Page } from './tab0.page';
-import { StatusCircleComponent } from '../components/status-circle-component/status-circle-component.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, Tab0PageRoutingModule],
-  declarations: [Tab0Page, StatusCircleComponent],
+  declarations: [Tab0Page],
 })
 export class Tab0PageModule {}

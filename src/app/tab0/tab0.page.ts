@@ -9,7 +9,6 @@ import { SwiperOptions } from 'swiper/types';
   styleUrls: ['./tab0.page.scss'],
 })
 export class Tab0Page implements AfterViewInit {
-  numberOfDots = 2 * Math.PI * 48 / (8)
 
   api = only_images_api_responce;
 
@@ -76,16 +75,6 @@ export class Tab0Page implements AfterViewInit {
       this.swiper.autoplay.resume();
     }
     this.swiperPaused = !this.swiperPaused;
-  }
-
-  clickEffect1 = false;
-  onClickEffect() {
-    this.clickEffect1 = true;
-
-    // Después de 1.9 segundos, restablecer la animación
-    setTimeout(() => {
-      this.clickEffect1 = false;
-    }, 1900);
   }
 
 }

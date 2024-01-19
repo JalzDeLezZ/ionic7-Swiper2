@@ -1,31 +1,21 @@
-svg.border-story {
-  stroke: #FA345D;
-  stroke-width: 3px;
-  // stroke-linecap: round;
-}
-
-svg.status-gradient {
-  circle {
-    transition: stroke-dasharray 1.9s ease-in-out;
-
-    &.clickEffect {
-      stroke-dasharray: 315;
-      stroke-dashoffset: 0;
-    }
-  }
-}
-
-
+// ! ---------------------------------------------
+// ! ----------------- STATUS --------------------
 .status-story::before {
-    content: "";
-    position: absolute;
-    top: -4px;
-    left: -4px;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(187.82deg, #B7AAEA -13.58%, rgba(184, 169, 232, 0.98809) -11.41%, #FA345D 68.33%, rgba(250, 52, 93, 0) 168.25%);
-    border-radius: 50%;
-    padding: 4px;
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    187.82deg,
+    #b7aaea -13.58%,
+    rgba(184, 169, 232, 0.98809) -11.41%,
+    #fa345d 68.33%,
+    rgba(250, 52, 93, 0) 168.25%
+  );
+  border-radius: 50%;
+  padding: 4px;
 }
 .status-story {
   .ifab-btn {
@@ -38,6 +28,8 @@ svg.status-gradient {
 ion-fab {
   margin-bottom: 12px;
 }
+
+// ! ---------------------------------------------
 html,
 body {
   position: relative;

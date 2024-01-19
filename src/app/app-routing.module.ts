@@ -29,6 +29,10 @@ const routes: Routes = [
   {
     path: 'tab0',
     loadChildren: () => import('./tab0/tab0.module').then( m => m.Tab0PageModule)
+  },
+  {
+    path: 'tab10-status',
+    loadChildren: () => import('./tab10-status/tab10-status.module').then( m => m.Tab10StatusPageModule)
   }
 ];
 @NgModule({
