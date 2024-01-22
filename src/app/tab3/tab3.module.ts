@@ -7,6 +7,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab3PageRoutingModule } from './tab3-routing.module';
 import { LengthTextRegulationPipe } from '../pipes/length-text-regulation.pipe';
+import { MpipesModule } from '../pipes/mpipes.module';
 
 @NgModule({
   imports: [
@@ -15,8 +16,9 @@ import { LengthTextRegulationPipe } from '../pipes/length-text-regulation.pipe';
     FormsModule,
     ExploreContainerComponentModule,
     Tab3PageRoutingModule,
+    MpipesModule
   ],
-  declarations: [Tab3Page, LengthTextRegulationPipe],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  declarations: [Tab3Page],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class Tab3PageModule {}

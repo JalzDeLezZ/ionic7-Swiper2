@@ -1,0 +1,17 @@
+<swiper-container slides-per-view="3" speed="500" loop="true" css-mode="true">
+  <swiper-slide *ngFor="let item of [1, 2, 3, 4, 5, 6, 7, 8, 9]">
+    <h1>$$$ {{ item }} $$$</h1>
+  </swiper-slide>
+</swiper-container>
+
+<swiper-container init="false" #swiper>
+  <swiper-slide
+    *ngFor="let item of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]"
+  >
+    <h1>Slide - {{ item }}</h1>
+  </swiper-slide>
+</swiper-container>
+
+<ion-button (click)="onUpdate()" expand="block" fill="clear" shape="round">
+  Update
+</ion-button>

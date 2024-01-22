@@ -20,24 +20,19 @@
     <div class="swiper-wrapper">
       <div class="swiper-slide" *ngFor="let item of api; let i = index">
         <ng-container [ngSwitch]="item.type">
-          <app-only-image
-            [api_item]="item"
-            *ngSwitchCase="'image'">
+          <app-only-image [api_item]="item" *ngSwitchCase="'image'">
           </app-only-image>
-          <app-form-add
+          <app-form-add [api_item]="item" *ngSwitchCase="'form'"></app-form-add>
+          <app-native-carousel
             [api_item]="item"
-            *ngSwitchCase="'form'"></app-form-add>
-          <app-carousel
-            [api_item]="item"
+            (sendChildEvent)="dadEventEmit($event)"
             *ngSwitchCase="'carousel'"
-          ></app-carousel>
+          ></app-native-carousel>
           <app-link-redirect
             [api_item]="item"
             *ngSwitchCase="'link'"
           ></app-link-redirect>
-          <app-movie
-            [api_item]="item"
-            *ngSwitchCase="'video'"></app-movie>
+          <app-movie [api_item]="item" *ngSwitchCase="'video'"></app-movie>
           <p *ngSwitchDefault>Default</p>
         </ng-container>
 
@@ -79,14 +74,32 @@
               <ng-template #tempElse>Ver menos</ng-template>
             </a>
           </article>
+          <section class="points-timer" (click)="earnPoints()">
+            <div *ngIf="item.points" class="'points-win'">
+              <img src="/assets/icon/coin-acua.svg" />
+              <h6>{{item.points}} Pts</h6>
+            </div>
+
+            <figure
+              class="earnPoints animate__animated animate__zoomIn"
+              [ngStyle]="{'display': coinAnimate ? 'flex' : 'none'}"
+            >
+              <img
+                class="animate__animated animate__backInUp"
+                src="/assets/icon/coin.svg"
+                alt=""
+              />
+              <h3>Ganaste {{item.points}} Pts</h3>
+            </figure>
+          </section>
         </footer>
         <!-- !------- -->
       </div>
     </div>
 
     <!-- If we need navigation buttons -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
+    <!-- <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div> -->
   </div>
 
   <ion-fab

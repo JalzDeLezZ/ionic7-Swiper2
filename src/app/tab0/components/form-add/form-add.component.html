@@ -1,3 +1,17 @@
-<p>
-  form-add works!
-</p>
+<img class="demo-bg" [src]="api_item.background" alt="" />
+<section class="form-section">
+  <h2>{{ api_item.form.title }}</h2>
+  <form action="">
+    <div *ngFor="let x of api_item.form.fields" class="cont-input">
+      <label [for]="x.label">{{ x.label }}</label>
+      <input
+        [type]="x.type"
+        [name]="x.label"
+        [id]="x.label"
+        [placeholder]="x.placeholder"
+      />
+    </div>
+
+    <button type="submit" class="save-btn">Continuar registro</button>
+  </form>
+</section>

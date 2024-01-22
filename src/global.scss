@@ -27,7 +27,6 @@
 
 @import "~animate.css/animate.min.css";
 
-
 .swiper-pagination-bullet {
   width: 20px;
   height: 20px;
@@ -43,7 +42,6 @@
   background: #d900ff !important;
 }
 
-
 .swiper-scrollbar {
   height: 4px !important;
   background: red !important;
@@ -54,6 +52,65 @@
   border-radius: 50% !important;
 }
 
-:host ::ng-deep h3 {
-  font-style: italic;
+.swiper-pagination.sub-carousel {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 4px 8px;
+  .swiper-pagination-bullet, .swiper-pagination-bullet-active {
+    background-color: #fa345d !important;
+  }
+}
+
+//! NEW SWIPER - SCROLL
+:host ::ng-deep .swiper-scrollbar {
+  position: absolute;
+  bottom: -2rem;
+}
+
+:host ::ng-deep .swiper-scrollbar.swiper-scrollbar-horizontal {
+  height: 0.65rem;
+}
+
+:host
+  ::ng-deep
+  .swiper-scrollbar.swiper-scrollbar-horizontal
+  .swiper-scrollbar-drag {
+  background: navy;
+  height: 0.5rem;
+  padding: 0.1rem;
+}
+
+/* //! Previous and Next buttons */
+
+.swiper-button-prev,
+.swiper-button-next {
+  background-color: navy;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.swiper-button-prev {
+  left: 2rem;
+  right: auto;
+}
+
+.swiper-button-next {
+  right: 2rem;
+  left: auto;
+}
+
+@media (min-width: 640px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    padding: 1rem;
+  }
+
+  .swiper-button-prev {
+    left: 10rem;
+  }
+
+  .swiper-button-next {
+    right: 10rem;
+  }
 }

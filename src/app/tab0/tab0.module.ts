@@ -8,7 +8,7 @@ import { Tab0PageRoutingModule } from './tab0-routing.module';
 
 import { Tab0Page } from './tab0.page';
 import { ComponetsModule } from './components/componets.module';
-import { LengthTextRegulationPipe } from '../pipes/length-text-regulation.pipe';
+import { MpipesModule } from '../pipes/mpipes.module';
 
 @NgModule({
   imports: [
@@ -17,7 +17,8 @@ import { LengthTextRegulationPipe } from '../pipes/length-text-regulation.pipe';
     IonicModule,
     Tab0PageRoutingModule,
     ComponetsModule,
+    MpipesModule
   ],
-  declarations: [Tab0Page, LengthTextRegulationPipe],
+  declarations: [Tab0Page],
 })
 export class Tab0PageModule {}

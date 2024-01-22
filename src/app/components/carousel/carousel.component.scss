@@ -1,0 +1,26 @@
+
+//ONE
+swiper-container {
+  width: 70vw;
+  min-height: 30vh;
+  margin: 0 auto;
+  position: relative;
+  outline: 1px solid red;
+  swiper-slide{
+    outline: 1px dotted greenyellow;
+    display: grid;
+    place-content: center;
+    width: auto;
+    height: 77%;
+    margin: auto;
+  }
+}
+
+
+ section {
+  width: 90vw;
+  min-height: 40vh;
+  margin: auto;
+  position: relative;
+  outline: 1px solid orange;
+}

@@ -13,6 +13,12 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
+        "@angular-eslint/no-input-rename": [
+          "warn",
+          {
+            "allowedNames": ["name"]
+          }
+        ],
         "@angular-eslint/component-class-suffix": [
           "error",
           {

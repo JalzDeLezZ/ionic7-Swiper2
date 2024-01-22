@@ -5,6 +5,7 @@ import {
 } from 'src/assets/data/api1';
 import Swiper from 'swiper';
 import { SwiperOptions } from 'swiper/types';
+import { IEmit } from './components/native-carousel/native-carousel.component';
 
 @Component({
   selector: 'app-tab0',
@@ -12,22 +13,57 @@ import { SwiperOptions } from 'swiper/types';
   styleUrls: ['./tab0.page.scss'],
 })
 export class Tab0Page implements AfterViewInit {
+  coinAnimate = false;
+
+  earnPoints(): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.coinAnimate = true;
+      setTimeout(() => {
+        this.coinAnimate = false;
+        resolve(true);
+      }, 3000);
+    });
+  }
+
   api = story_adds_api_responce;
   flag_showMore = true;
 
   swiper!: Swiper;
   swiperPaused: boolean = false;
-  swiperProgress: number = 0.6; //! *** 0
+  swiperProgress: number = 0;
   swiperCurrentIndex: number = 0;
   @ViewChild('swiperElement', { static: false }) swiperElement!: ElementRef;
 
   constructor() {}
+  dadEventEmit(_emit: IEmit) {
+    if (_emit.value === 'end' && _emit.type === 'carousel') {
+      this.swiperProgress = 0;
+      this.earnPoints().then((res) => {
+        if (res) {
+          this.swiper.autoplay.timeLeft = 5000;
+          this.swiper.autoplay.start();
+          this.swiper.slideNext();
+        }
+      });
+    }
+  }
 
   ngAfterViewInit() {
     this.swiper = new Swiper(this.swiperElement.nativeElement);
     setTimeout(() => {
       this.onInitialSlide();
     }, 1000);
+    setTimeout(() => {
+      this.stopSwiper();
+    }, 1200);
+  }
+
+  stopSwiper() {
+    const type = this.api[this.swiper.activeIndex].type;
+    if (type === 'video' || type === 'carousel' || type === 'form') {
+      this.swiper.autoplay.stop();
+      this.swiperProgress = 1;
+    }
   }
 
   onInitialSlide() {
@@ -36,10 +72,10 @@ export class Tab0Page implements AfterViewInit {
       loop: false,
       speed: 400,
       allowTouchMove: false,
-      // !autoplay: {
-      //   delay: 2000,
-      //   disableOnInteraction: false,
-      // },
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
@@ -49,6 +85,8 @@ export class Tab0Page implements AfterViewInit {
           this.swiperCurrentIndex = 0;
         },
         slideChange: () => {
+          this.stopSwiper();
+
           this.swiperCurrentIndex = this.swiper.activeIndex;
         },
         autoplayTimeLeft: (swiper, timeLeft, percentage) => {
