@@ -22,10 +22,12 @@
         <ng-container [ngSwitch]="item.type">
           <app-only-image [api_item]="item" *ngSwitchCase="'image'">
           </app-only-image>
-          <app-form-add [api_item]="item" *ngSwitchCase="'form'"></app-form-add>
+          <app-form-add
+            (childEventEmit)="dadEventEmitForm($event)"
+            [api_item]="item" *ngSwitchCase="'form'"></app-form-add>
           <app-native-carousel
             [api_item]="item"
-            (sendChildEvent)="dadEventEmit($event)"
+            (sendChildEvent)="dadEventEmitCarousel($event)"
             *ngSwitchCase="'carousel'"
           ></app-native-carousel>
           <app-link-redirect
@@ -40,7 +42,7 @@
         <footer class="information">
           <div class="actions">
             <ion-icon name="heart-outline"></ion-icon>
-            <ion-icon name="download-outline"></ion-icon>
+            <ion-icon (click)="dadEventEmitForm('Send To Service')" name="download-outline"></ion-icon>
           </div>
 
           <header class="second">

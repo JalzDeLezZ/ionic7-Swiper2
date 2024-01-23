@@ -53,7 +53,6 @@ export class NativeCarouselComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log('ngAfterViewInit');
     this.swiper = new Swiper(
       this.swiperElement.nativeElement,
       this.swiperParams

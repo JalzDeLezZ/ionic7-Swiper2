@@ -9,6 +9,7 @@ import { LinkRedirectComponent } from './link-redirect/link-redirect.component';
 import { MovieComponent } from './movie/movie.component';
 import { SwiperDirective } from 'src/app/directives/swiper.directive';
 import { NativeCarouselComponent } from './native-carousel/native-carousel.component';
+import { NgxParticlesModule } from '@tsparticles/angular';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { NativeCarouselComponent } from './native-carousel/native-carousel.compo
     RouterModule,
     ReactiveFormsModule,
     SwiperDirective,
+    NgxParticlesModule
   ],
   declarations: [
     OnlyImageComponent,

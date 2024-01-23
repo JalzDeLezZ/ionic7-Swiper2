@@ -1,10 +1,12 @@
 <img class="demo-bg" [src]="api_item.background" alt="" />
 <section class="form-section">
   <h2>{{ api_item.form.title }}</h2>
-  <form action="">
+  <form #myForm2="ngForm" (ngSubmit)="onSubmit(myForm2)" [noValidate]="false">
     <div *ngFor="let x of api_item.form.fields" class="cont-input">
       <label [for]="x.label">{{ x.label }}</label>
       <input
+        ngModel
+        required
         [type]="x.type"
         [name]="x.label"
         [id]="x.label"

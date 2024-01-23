@@ -6,6 +6,7 @@ import {
 import Swiper from 'swiper';
 import { SwiperOptions } from 'swiper/types';
 import { IEmit } from './components/native-carousel/native-carousel.component';
+import { confetti } from '@tsparticles/confetti';
 
 @Component({
   selector: 'app-tab0',
@@ -35,7 +36,7 @@ export class Tab0Page implements AfterViewInit {
   @ViewChild('swiperElement', { static: false }) swiperElement!: ElementRef;
 
   constructor() {}
-  dadEventEmit(_emit: IEmit) {
+  dadEventEmitCarousel(_emit: IEmit) {
     if (_emit.value === 'end' && _emit.type === 'carousel') {
       this.swiperProgress = 0;
       this.earnPoints().then((res) => {
@@ -48,14 +49,22 @@ export class Tab0Page implements AfterViewInit {
     }
   }
 
+  dadEventEmitForm(_emit: any) {
+    onConfetti();
+    setTimeout(() => {
+      this.swiper.autoplay.start();
+      this.swiper.slideNext();
+    }, 1500);
+  }
+
   ngAfterViewInit() {
     this.swiper = new Swiper(this.swiperElement.nativeElement);
     setTimeout(() => {
       this.onInitialSlide();
-    }, 1000);
+    }, 1500);
     setTimeout(() => {
       this.stopSwiper();
-    }, 1200);
+    }, 1600);
   }
 
   stopSwiper() {
@@ -118,4 +127,45 @@ export class Tab0Page implements AfterViewInit {
     }
     this.swiperPaused = !this.swiperPaused;
   }
+}
+
+
+const onConfetti = async () => {
+  const defaults = {
+    spread: 360,
+    ticks: 100,
+    gravity: 0,
+    decay: 0.94,
+    startVelocity: 30,
+    shapes: ['heart'],
+    colors: ['FFC0CB', 'FF69B4', 'FF1493', 'C71585'],
+  };
+
+  await confetti({
+    ...defaults,
+    particleCount: 50,
+    scalar: 2,
+  });
+
+  await confetti({
+    ...defaults,
+    particleCount: 25,
+    scalar: 3,
+  });
+
+  await confetti({
+    ...defaults,
+    particleCount: 10,
+    scalar: 4,
+  });
+  await confetti({
+    particleCount: 100,
+    startVelocity: 30,
+    spread: 360,
+    origin: {
+      x: Math.random(),
+      // since they fall down, start a bit higher than random
+      y: Math.random() - 0.2,
+    },
+  });
 }
