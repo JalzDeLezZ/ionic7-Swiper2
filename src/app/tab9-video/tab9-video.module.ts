@@ -15,6 +15,7 @@ import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { SafeResourceURLPipe } from '../pipes/safe-resource-url.pipe';
 import { EndComponent } from './end/end.component';
+import { MpipesModule } from '../pipes/mpipes.module';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { EndComponent } from './end/end.component';
     IonicModule,
     Tab9VideoPageRoutingModule,
     VideoplayerComponent,
+    MpipesModule,
     // VdPlaterComponent,
     VgCoreModule,
     VgControlsModule,
@@ -31,7 +33,6 @@ import { EndComponent } from './end/end.component';
   ],
   declarations: [
     Tab9VideoPage,
-    SafeResourceURLPipe,
     VdPlaterComponent,
     EndComponent,
   ],

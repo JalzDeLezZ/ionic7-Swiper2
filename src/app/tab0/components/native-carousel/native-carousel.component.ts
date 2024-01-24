@@ -18,10 +18,7 @@ import { SwiperOptions } from 'swiper/types';
 })
 export class NativeCarouselComponent implements OnInit, AfterViewInit {
   @Input() api_item: any;
-  @Output() sendChildEvent = new EventEmitter<{
-    value: string;
-    type: string;
-  }>();
+  @Output() sendChildEventCarouselEnd = new EventEmitter<boolean>();
 
   @ViewChild('swiperElement', { static: false }) swiperElement!: ElementRef;
   swiper!: Swiper;
@@ -60,7 +57,7 @@ export class NativeCarouselComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.swiper.init();
       this.swiper.on('reachEnd', () => {
-        this.childEvent({ value: 'end', type: 'carousel' });
+        this.childEventCarouselEnd(true);
       });
     }, 150);
     return;
@@ -70,12 +67,7 @@ export class NativeCarouselComponent implements OnInit, AfterViewInit {
     console.log('ionViewWillEnter');
   }
 
-  childEvent(value: IEmit) {
-    this.sendChildEvent.emit(value);
+  childEventCarouselEnd(value: boolean) {
+    this.sendChildEventCarouselEnd.emit(value);
   }
-}
-
-export interface IEmit {
-  value: string;
-  type: string;
 }

@@ -5,7 +5,6 @@ import {
 } from 'src/assets/data/api1';
 import Swiper from 'swiper';
 import { SwiperOptions } from 'swiper/types';
-import { IEmit } from './components/native-carousel/native-carousel.component';
 import { confetti } from '@tsparticles/confetti';
 
 @Component({
@@ -30,14 +29,19 @@ export class Tab0Page implements AfterViewInit {
   flag_showMore = true;
 
   swiper!: Swiper;
+  swiperNavigation = {
+    next: false,
+    prev: false,
+  };
+  swiperNav2Buttons = false;
   swiperPaused: boolean = false;
   swiperProgress: number = 0;
   swiperCurrentIndex: number = 0;
   @ViewChild('swiperElement', { static: false }) swiperElement!: ElementRef;
 
   constructor() {}
-  dadEventEmitCarousel(_emit: IEmit) {
-    if (_emit.value === 'end' && _emit.type === 'carousel') {
+  dadEventEmitCarouselEnd(_emit: boolean) {
+    if (_emit) {
       this.swiperProgress = 0;
       this.earnPoints().then((res) => {
         if (res) {
@@ -68,10 +72,19 @@ export class Tab0Page implements AfterViewInit {
   }
 
   stopSwiper() {
+    if (!this.swiperNav2Buttons) {
+      this.swiperNavigation.prev = false;
+      this.swiperNavigation.next = false;
+    }
+
     const type = this.api[this.swiper.activeIndex].type;
     if (type === 'video' || type === 'carousel' || type === 'form') {
       this.swiper.autoplay.stop();
       this.swiperProgress = 1;
+    } else if (type === 'link') {
+      this.swiper.autoplay.stop();
+      this.swiperProgress = 1;
+      this.swiperNavigation.next = true;
     }
   }
 
@@ -80,6 +93,7 @@ export class Tab0Page implements AfterViewInit {
     const swiperParams: SwiperOptions = {
       loop: false,
       speed: 400,
+      //! %%%%%%%%%%%%%%%%%%
       allowTouchMove: false,
       autoplay: {
         delay: 3000,
@@ -95,7 +109,6 @@ export class Tab0Page implements AfterViewInit {
         },
         slideChange: () => {
           this.stopSwiper();
-
           this.swiperCurrentIndex = this.swiper.activeIndex;
         },
         autoplayTimeLeft: (swiper, timeLeft, percentage) => {
@@ -115,6 +128,10 @@ export class Tab0Page implements AfterViewInit {
           this.swiper.autoplay.stop();
         }
       });
+      this.swiperNav2Buttons = true;
+      this.swiperNavigation.next = true;
+      this.swiperNavigation.prev = true;
+      this.swiper.autoplay.stop();
     });
     this.swiper.update();
   }
@@ -127,8 +144,20 @@ export class Tab0Page implements AfterViewInit {
     }
     this.swiperPaused = !this.swiperPaused;
   }
-}
+  onSlideNavigation(_type: 'prev' | 'next') {
+    if (_type === 'prev') {
+      this.swiper.slidePrev();
+    } else {
+      this.swiper.slideNext();
+    }
+    if (this.swiperNav2Buttons) {
+      this.swiper.autoplay.stop();
+    } else {
+      this.swiper.autoplay.start();
+    }
 
+  }
+}
 
 const onConfetti = async () => {
   const defaults = {
@@ -168,4 +197,4 @@ const onConfetti = async () => {
       y: Math.random() - 0.2,
     },
   });
-}
+};

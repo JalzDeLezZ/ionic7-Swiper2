@@ -3,6 +3,19 @@
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 
 export const story_adds_api_responce = [
+  // {
+  //   id: 2,
+  //   desctiption: 'This is a test string for the description of the video',
+  //   likes: 6,
+  //   type: 'video',
+  //   url: 'https://exit109.com/~dnn/clips/RW20seconds_1.mp4',
+  //   company: {
+  //     id: 2,
+  //     name: 'Second company name',
+  //     logo: 'https://via.placeholder.com/150',
+  //   },
+  //   points: 40,
+  // },
   {
     id: 0,
     likes: 900,
@@ -21,7 +34,22 @@ export const story_adds_api_responce = [
       name: 'First company name',
       logo: 'https://picsum.photos/150/150',
     },
-    points: 10
+    points: 10,
+  },
+  {
+    id: 123,
+    type: 'link',
+    company: {
+      id: 1,
+      name: 'Company Second',
+      logo: 'https://picsum.photos/150/150',
+    },
+    post: {
+      title: 'Nuevos Kids Super Pollo',
+      subtitle: 'Nueva presentación, te invitamos a probarlos',
+      navigate: 'https://www.google.com',
+    },
+    points: 30,
   },
   {
     id: 5,
@@ -35,7 +63,7 @@ export const story_adds_api_responce = [
       name: 'Third',
       logo: 'https://picsum.photos/150/150',
     },
-    points: 70
+    points: 70,
   },
   {
     id: 222,
@@ -127,7 +155,7 @@ export const story_adds_api_responce = [
       name: 'Super Chicken',
       logo: 'https://picsum.photos/150/150',
     },
-    points: 20
+    points: 20,
   },
 
   {
@@ -145,34 +173,6 @@ export const story_adds_api_responce = [
   },
 
   {
-    id: 123,
-    type: 'link',
-    company: {
-      id: 1,
-      name: 'Company Second',
-      logo: 'https://picsum.photos/150/150',
-    },
-    post: {
-      title: 'Nuevos Kids Super Pollo',
-      subtitle: 'Nueva presentación, te invitamos a probarlos',
-      navigate: 'https://www.google.com',
-    },
-    points: 30
-  },
-  {
-    id: 2,
-    desctiption: 'This is a test string for the description of the video',
-    likes: 6,
-    type: 'video',
-    url: 'https://exit109.com/~dnn/clips/RW20seconds_1.mp4',
-    company: {
-      id: 2,
-      name: 'Second company name',
-      logo: 'https://via.placeholder.com/150',
-    },
-    points: 40
-  },
-  {
     id: 3,
     desctiption:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.',
@@ -184,7 +184,7 @@ export const story_adds_api_responce = [
       name: 'Third',
       logo: 'https://picsum.photos/150/150',
     },
-    points: 50
+    points: 50,
   },
   {
     id: 4,
@@ -198,7 +198,7 @@ export const story_adds_api_responce = [
       name: 'Third',
       logo: 'https://picsum.photos/150/150',
     },
-    points: 60
+    points: 60,
   },
   // ! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ];

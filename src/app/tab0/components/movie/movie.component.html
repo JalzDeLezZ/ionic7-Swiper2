@@ -1,3 +1,19 @@
-<p>
-  movie works!
-</p>
+<div class="video-player-wrapper">
+  <vg-player (onPlayerReady)="videoPlayerInit($event)">
+    <vg-controls>
+      <vg-mute></vg-mute>
+      <vg-play-pause></vg-play-pause>
+      <vg-fullscreen></vg-fullscreen>
+    </vg-controls>
+    <video
+      #media
+      [vgMedia]="$any(media)"
+      id="singleVideo"
+      preload="auto"
+      crossorigin
+    ></video>
+    <!--
+      [src]="currentVideo.src | safeResourceURL"
+     -->
+  </vg-player>
+</div>

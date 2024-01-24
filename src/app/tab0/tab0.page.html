@@ -24,10 +24,12 @@
           </app-only-image>
           <app-form-add
             (childEventEmit)="dadEventEmitForm($event)"
-            [api_item]="item" *ngSwitchCase="'form'"></app-form-add>
+            [api_item]="item"
+            *ngSwitchCase="'form'"
+          ></app-form-add>
           <app-native-carousel
             [api_item]="item"
-            (sendChildEvent)="dadEventEmitCarousel($event)"
+            (sendChildEventCarouselEnd)="dadEventEmitCarouselEnd($event)"
             *ngSwitchCase="'carousel'"
           ></app-native-carousel>
           <app-link-redirect
@@ -42,7 +44,10 @@
         <footer class="information">
           <div class="actions">
             <ion-icon name="heart-outline"></ion-icon>
-            <ion-icon (click)="dadEventEmitForm('Send To Service')" name="download-outline"></ion-icon>
+            <ion-icon
+              (click)="dadEventEmitForm('Send To Service')"
+              name="download-outline"
+            ></ion-icon>
           </div>
 
           <header class="second">
@@ -100,8 +105,15 @@
     </div>
 
     <!-- If we need navigation buttons -->
-    <!-- <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div> -->
+    <div
+      *ngIf="swiperNavigation.next"
+      class="swiper-button-next custom"
+      (click)="onSlideNavigation('next')"
+    ></div>
+    <!-- [ngStyle]="{'opacity': swiperNavigation.next ? 0 : 1}" -->
+    <div
+    (click)="onSlideNavigation('prev')"
+    *ngIf="swiperNavigation.prev" class="swiper-button-prev custom"></div>
   </div>
 
   <ion-fab

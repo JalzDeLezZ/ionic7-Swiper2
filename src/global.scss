@@ -27,6 +27,15 @@
 
 @import "~animate.css/animate.min.css";
 
+.swiper-button-next.custom,
+.swiper-button-prev.custom {
+  color: #FA345D;
+  background: #0000005c;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
 .swiper-pagination-bullet {
   width: 20px;
   height: 20px;
@@ -56,7 +65,8 @@
   background-color: #fff;
   border-radius: 8px;
   padding: 4px 8px;
-  .swiper-pagination-bullet, .swiper-pagination-bullet-active {
+  .swiper-pagination-bullet,
+  .swiper-pagination-bullet-active {
     background-color: #fa345d !important;
   }
 }
