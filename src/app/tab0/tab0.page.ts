@@ -33,7 +33,7 @@ export class Tab0Page implements AfterViewInit {
     next: false,
     prev: false,
   };
-  swiperNav2Buttons = false;
+  swiperNav2Buttons = true;
   swiperPaused: boolean = false;
   swiperProgress: number = 0;
   swiperCurrentIndex: number = 0;
@@ -50,6 +50,13 @@ export class Tab0Page implements AfterViewInit {
           this.swiper.slideNext();
         }
       });
+    }
+  }
+  dadEventEmitMovieEnd(_emit: boolean) {
+    if (_emit) {
+      this.progressVideo = 0;
+      this.swiper.autoplay.start();
+      this.swiper.slideNext();
     }
   }
 
@@ -106,10 +113,20 @@ export class Tab0Page implements AfterViewInit {
       on: {
         init: () => {
           this.swiperCurrentIndex = 0;
+
+          const type = this.api[0].type;
+          console.log(type);
+          if (type === 'video') {
+            //TODO: Play child current video
+          }
         },
         slideChange: () => {
           this.stopSwiper();
           this.swiperCurrentIndex = this.swiper.activeIndex;
+          const type = this.api[this.swiper.activeIndex].type;
+          console.log(type);
+          //TODO: Play child current video
+
         },
         autoplayTimeLeft: (swiper, timeLeft, percentage) => {
           this.swiperProgress = 1 - percentage;
@@ -155,7 +172,16 @@ export class Tab0Page implements AfterViewInit {
     } else {
       this.swiper.autoplay.start();
     }
+  }
 
+  like = false;
+  onLike() {
+    this.like = !this.like;
+  }
+
+  progressVideo = 0;
+  dadEventEmitCurrentProgressVideo(_emit: number) {
+    this.progressVideo = _emit;
   }
 }
 

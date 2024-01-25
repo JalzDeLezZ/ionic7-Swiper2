@@ -1,48 +1,71 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  DoCheck,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+import { VgApiService } from '@videogular/ngx-videogular/core';
 
 @Component({
   selector: 'app-movie',
   templateUrl: './movie.component.html',
   styleUrls: ['./movie.component.scss'],
 })
-export class MovieComponent  implements OnInit {
+export class MovieComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() api_item;
+  @Input() swiperCurrentIndex;
+  @Input() arrayIndex;
+  @Output() childEventCurrentProgressVideo = new EventEmitter<any>();
+  @Output() childEventMovieEnd = new EventEmitter<any>();
+  @Input() currentVideo: boolean = false;
   activeIndex = 0;
-  data: any;
+  data: VgApiService;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {return}
+  ngOnInit() {
+    return;
+  }
 
-  videoPlayerInit(data: any) {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['currentVideo'] && changes['currentVideo'].currentValue) {
+      setTimeout(() => {
+        this.data.play();
+      }, 1000);
+    }
+  }
+
+  videoPlayerInit(data: VgApiService) {
     this.data = data;
-    // this.data
-    //   .getDefaultMedia()
-    //   .subscriptions.loadedMetadata.subscribe(this.initVdo.bind(this));
-    // this.data
-    //   .getDefaultMedia()
-    //   .subscriptions.ended.subscribe(this.nextVideo.bind(this));
+    this.data.getDefaultMedia().subscriptions.loadedMetadata.subscribe(() => {
+      if (this.swiperCurrentIndex !== this.arrayIndex) {
+        this.data.pause();
+      } else {
+        this.data.play();
+      }
+    });
+    this.data.getDefaultMedia().subscriptions.ended.subscribe(() => {
+      this.childEventMovieEnd.emit(true);
+    });
+
+    // Suscribirse al evento timeUpdate
+    this.data.getDefaultMedia().subscriptions.timeUpdate.subscribe(() => {
+      this.childEventCurrentProgressVideo.emit(this.progressValue);
+    });
+  }
+  ngAfterViewInit() {
+    return;
   }
 
   ionViewDidEnter() {
-    this.data.play();
+    console.log('ionViewDidEnter');
   }
-
-  // nextVideo() {
-  //   console.log('nextVideo');
-  //   this.activeIndex++;
-  //   if (this.activeIndex === this.videoItems.length) {
-  //     this.activeIndex = 0;
-  //   }
-  //   this.currentVideo = this.videoItems[this.activeIndex];
-  // }
-  // initVdo() {
-  //   this.data.play();
-  // }
-  // startPlaylistVdo(item: any, index: number) {
-  //   this.activeIndex = index;
-  //   this.currentVideo = item;
-  // }
 
   public get progressValue(): number {
     return this.data?.currentTime

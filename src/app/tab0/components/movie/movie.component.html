@@ -3,7 +3,6 @@
     <vg-controls>
       <vg-mute></vg-mute>
       <vg-play-pause></vg-play-pause>
-      <vg-fullscreen></vg-fullscreen>
     </vg-controls>
     <video
       #media
@@ -11,9 +10,7 @@
       id="singleVideo"
       preload="auto"
       crossorigin
+      [src]="api_item.url | safeResourceURL"
     ></video>
-    <!--
-      [src]="currentVideo.src | safeResourceURL"
-     -->
   </vg-player>
 </div>
