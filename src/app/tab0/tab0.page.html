@@ -18,7 +18,7 @@
   <!--?############ Slides ?############-->
   <div class="swiper" #swiperElement>
     <div class="swiper-wrapper">
-      <div class="swiper-slide" *ngFor="let item of api; let i = index">
+      <div class="swiper-slide" *ngFor="let item of api; let ix = index">
         <ng-container [ngSwitch]="item.type">
           <app-only-image [api_item]="item" *ngSwitchCase="'image'">
           </app-only-image>
@@ -33,18 +33,16 @@
             [api_item]="item"
           ></app-link-redirect>
           <app-movie
-            [currentVideo]="(swiperCurrentIndex === i) ? true : false"
+            [currentVideo]="(swiperCurrentIndex === ix) ? true : false"
             (childEventCurrentProgressVideo)="dadEventEmitCurrentProgressVideo($event)"
             (childEventMovieEnd)="dadEventEmitMovieEnd($event)"
             [swiperCurrentIndex]="swiperCurrentIndex"
-            [arrayIndex]="i"
+            [arrayIndex]="ix"
             [api_item]="item"
             *ngSwitchCase="'video'"
-            [ngStyle]="{'opacity': swiperCurrentIndex === i ? 1 : 0}"
           ></app-movie>
           <app-native-carousel
             *ngSwitchCase="'carousel'"
-            [ngStyle]="{'opacity': swiperCurrentIndex === i ? 1 : 0}"
             [api_item]="item"
             (sendChildEventCarouselEnd)="dadEventEmitCarouselEnd($event)"
           ></app-native-carousel>
@@ -97,7 +95,7 @@
           </article>
           <section class="points-timer" (click)="earnPoints()">
             <ion-progress-bar
-              [value]="progressVideo"
+              [value]="progressVideo[ix]"
               class="movie"
               [ngStyle]="{'display': item.type === 'video' ? 'block' : 'none'}"
             ></ion-progress-bar>

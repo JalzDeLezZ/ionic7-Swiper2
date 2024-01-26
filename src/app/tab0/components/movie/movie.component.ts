@@ -17,7 +17,7 @@ import { VgApiService } from '@videogular/ngx-videogular/core';
   templateUrl: './movie.component.html',
   styleUrls: ['./movie.component.scss'],
 })
-export class MovieComponent implements OnInit, AfterViewInit, OnChanges {
+export class MovieComponent implements OnInit, OnChanges {
   @Input() api_item;
   @Input() swiperCurrentIndex;
   @Input() arrayIndex;
@@ -38,6 +38,10 @@ export class MovieComponent implements OnInit, AfterViewInit, OnChanges {
       setTimeout(() => {
         this.data.play();
       }, 1000);
+    } else {
+      setTimeout(() => {
+        this.data.pause();
+      }, 1000);
     }
   }
 
@@ -50,21 +54,16 @@ export class MovieComponent implements OnInit, AfterViewInit, OnChanges {
         this.data.play();
       }
     });
+
+    this.data.getDefaultMedia().subscriptions.timeUpdate.subscribe(() => {
+      const sendToObj: { [key: number]: number } = {};
+      sendToObj[this.arrayIndex] = this.progressValue;
+      this.childEventCurrentProgressVideo.emit(sendToObj);
+    });
+
     this.data.getDefaultMedia().subscriptions.ended.subscribe(() => {
       this.childEventMovieEnd.emit(true);
     });
-
-    // Suscribirse al evento timeUpdate
-    this.data.getDefaultMedia().subscriptions.timeUpdate.subscribe(() => {
-      this.childEventCurrentProgressVideo.emit(this.progressValue);
-    });
-  }
-  ngAfterViewInit() {
-    return;
-  }
-
-  ionViewDidEnter() {
-    console.log('ionViewDidEnter');
   }
 
   public get progressValue(): number {
