@@ -39,3 +39,11 @@ styles:
 * [How to Animate SVG Strokes](https://youtu.be/-Na_WRk3k74)
 * [Border Generator](https://kovart.github.io/dashed-border-generator/)
 
+
+
+// parametrizar por pais
+
+por nivel de env , agregar la configuracion, y que secciones están disponibles por la app...
+generar servicio por el backen, gateway y consumir la info...
+
+Parecido al ApiName,

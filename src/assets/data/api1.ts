@@ -42,7 +42,7 @@ export const story_adds_api_responce = [
     desctiption: 'This is a test string for the description of the video',
     likes: 6,
     type: 'video',
-    url: 'https://vod-progressive.akamaized.net/exp=1706126698~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F2713%2F21%2F538569339%2F2552350474.mp4~hmac=73399169a01e3c8231ee651ae315278eb3e7be570ed36ddfd721cd60eaad10fd/vimeo-prod-skyfire-std-us/01/2713/21/538569339/2552350474.mp4',
+    url: 'https://static.videezy.com/system/resources/previews/000/012/040/original/Fire_17_-_45s_-_4k_res.mp4',
     company: {
       id: 2,
       name: 'Second company name',
@@ -50,19 +50,19 @@ export const story_adds_api_responce = [
     },
     points: 40,
   },
-  {
-    id: 3,
-    desctiption: 'This is a test string for the description of the video',
-    likes: 6,
-    type: 'video',
-    url: 'https://vod-progressive.akamaized.net/exp=1706128840~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F4026%2F18%2F470132138%2F2091294070.mp4~hmac=a819494ecd7d07d1aba4233c7be19c46f26fd5eebb9b7f8f406184d23c87fc8c/vimeo-prod-skyfire-std-us/01/4026/18/470132138/2091294070.mp4',
-    company: {
-      id: 2,
-      name: 'Second company name',
-      logo: 'https://via.placeholder.com/150',
-    },
-    points: 40,
-  },
+  // {
+  //   id: 3,
+  //   desctiption: 'This is a test string for the description of the video',
+  //   likes: 6,
+  //   type: 'video',
+  //   url: 'https://vod-progressive.akamaized.net/exp=1706128840~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F4026%2F18%2F470132138%2F2091294070.mp4~hmac=a819494ecd7d07d1aba4233c7be19c46f26fd5eebb9b7f8f406184d23c87fc8c/vimeo-prod-skyfire-std-us/01/4026/18/470132138/2091294070.mp4',
+  //   company: {
+  //     id: 2,
+  //     name: 'Second company name',
+  //     logo: 'https://via.placeholder.com/150',
+  //   },
+  //   points: 40,
+  // },
   {
     id: 0,
     likes: 900,
