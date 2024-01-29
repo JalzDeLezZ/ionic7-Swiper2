@@ -16,6 +16,7 @@ import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { SafeResourceURLPipe } from 'src/app/pipes/safe-resource-url.pipe';
 import { MpipesModule } from 'src/app/pipes/mpipes.module';
+import { QuizComponent } from './quiz/quiz.component';
 
 @NgModule({
   imports: [
@@ -42,6 +43,7 @@ import { MpipesModule } from 'src/app/pipes/mpipes.module';
     NativeCarouselComponent,
     LinkRedirectComponent,
     MovieComponent,
+    QuizComponent
   ],
   exports: [
     OnlyImageComponent,
@@ -49,6 +51,7 @@ import { MpipesModule } from 'src/app/pipes/mpipes.module';
     NativeCarouselComponent,
     LinkRedirectComponent,
     MovieComponent,
+    QuizComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

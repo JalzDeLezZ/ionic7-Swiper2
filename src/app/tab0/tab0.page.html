@@ -46,6 +46,10 @@
             [api_item]="item"
             (sendChildEventCarouselEnd)="dadEventEmitCarouselEnd($event)"
           ></app-native-carousel>
+          <app-quiz
+            *ngSwitchCase="'quiz'"
+            [api_item]="item"
+          ></app-quiz>
           <p *ngSwitchDefault>Default</p>
         </ng-container>
 
@@ -121,18 +125,19 @@
       </div>
     </div>
 
+    <!-- !!!!!!!!!!!!!!! -->
     <!-- If we need navigation buttons -->
-    <div
+    <!-- <div
       *ngIf="swiperNavigation.next || swiperNav2Buttons"
       class="swiper-button-next custom"
-    ></div>
+    ></div> -->
     <!-- (click)="onSlideNavigation('next')" -->
     <!-- [ngStyle]="{'opacity': swiperNavigation.next ? 0 : 1}" -->
     <!-- (click)="onSlideNavigation('prev')" -->
-    <div
+    <!-- <div
       *ngIf="swiperNavigation.prev || swiperNav2Buttons"
       class="swiper-button-prev custom"
-    ></div>
+    ></div> -->
   </div>
 
   <ion-fab

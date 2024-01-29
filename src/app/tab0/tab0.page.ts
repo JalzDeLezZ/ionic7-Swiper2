@@ -84,7 +84,7 @@ export class Tab0Page implements AfterViewInit {
     }
 
     const type = this.api[this.swiper.activeIndex].type;
-    if (type === 'video' || type === 'carousel' || type === 'form') {
+    if (type === 'video' || type === 'carousel' || type === 'form' || type === "quiz") {
       this.swiper.autoplay.stop();
       this.swiperProgress = 1;
     } else if (type === 'link') {

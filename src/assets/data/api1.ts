@@ -4,6 +4,40 @@
 
 export const story_adds_api_responce = [
   {
+    id: 900,
+    type: 'quiz',
+    company: {
+      id: 1,
+      name: 'Harina PAN',
+      logo: 'https://picsum.photos/150/150',
+    },
+    points: 15,
+    quiz: {
+      call_to_action: 'Encuentra la respuesta correcta y gana 50 Pts.',
+      title: '¿En qué año salió nuestro producto Nuggets de Pollo Spicy?',
+      subtitle: 'Nueva presentación, te invitamos a probarlos',
+      navigate: 'https://www.google.com',
+      image: 'https://picsum.photos/450/800',
+      fields: [
+        {
+          id: 1,
+          text: 'Este mismo año',
+          answer: false,
+        },
+        {
+          id: 2,
+          text: 'Se anunció en el 2022',
+          answer: false,
+        },
+        {
+          id: 3,
+          text: 'Se anunció en el 2016',
+          answer: true,
+        },
+      ],
+    },
+  },
+  {
     id: 2,
     desctiption: 'This is a test string for the description of the video',
     likes: 6,
