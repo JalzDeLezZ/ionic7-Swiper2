@@ -1,5 +1,7 @@
 ### DOC:
 ---
+
+* [NPM UPDATES :: npm install -g npm-check-updates](https://youtu.be/0XQXGx3lLaU) <!--! DOC.: https://chrispennington.blog/blog/how-to-update-npm-packages-safely-with-npm-check-updates/ -->
 * [Swiper Element (WebComponent)](https://swiperjs.com/element)
 * [Swiper Full HTML Layout](https://swiperjs.com/swiper-api)
 * [CodePen Home Instagram Stories inspired slider with SwiperJs](https://codepen.io/marcosandri/pen/VwVgWeK)
@@ -47,3 +49,19 @@ por nivel de env , agregar la configuracion, y que secciones están disponibles 
 generar servicio por el backen, gateway y consumir la info...
 
 Parecido al ApiName,
+
+
+### ANDROID
+```bash 
+ionic build
+
+npm install @capacitor/android
+npx cap add android
+
+ionic cap sync android
+ionic cap update android
+ionic cap open android
+
+ionic cap run android -l --external
+
+```
