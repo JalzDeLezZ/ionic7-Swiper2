@@ -52,6 +52,7 @@ Parecido al ApiName,
 
 
 ### ANDROID
+
 ```bash 
 ionic build
 
@@ -63,5 +64,19 @@ ionic cap update android
 ionic cap open android
 
 ionic cap run android -l --external
+
+```
+
+### IOS
+
+```bash
+  npm install @capacitor/ios
+
+# In order to develop iOS applications using Capacitor, you will need four additional dependencies:
+  * Xcode
+  * Xcode Command Line Tools
+  * Homebrew
+  * Cocoapods
+
 
 ```
