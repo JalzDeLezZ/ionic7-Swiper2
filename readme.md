@@ -78,5 +78,6 @@ ionic cap run android -l --external
   * Homebrew
   * Cocoapods
 
+ionic cap run ios -l --external
 
 ```
